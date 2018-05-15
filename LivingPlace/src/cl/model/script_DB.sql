@@ -33,7 +33,7 @@ CREATE TABLE tipo_vivienda(
 
 CREATE TABLE vivienda(
     id INT PRIMARY KEY AUTO_INCREMENT,
-    rol INT,
+    rol VARCHAR(100),
     direccion VARCHAR(50),
     cantidad_pieza INT,
     cantidad_baño INT,
