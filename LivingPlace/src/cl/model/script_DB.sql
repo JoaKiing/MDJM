@@ -25,3 +25,20 @@ CREATE TABLE cliente(
     run VARCHAR(13) UNIQUE,
     sueldo INT
 ); -- SELECT * FROM cliente;
+
+CREATE TABLE tipo_vivienda( 
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(50)
+); -- SELECT * FROM tipo_vivienda;
+
+CREATE TABLE vivienda(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    rol INT,
+    direccion VARCHAR(50),
+    cantidad_pieza INT,
+    cantidad_baño INT,
+    tipo_vivienda_FK INT REFERENCES tipo_vivienda(id),
+    precio INT,
+    nuevo_usado BOOLEAN
+); -- SELECT * FROM vivienda;
+
