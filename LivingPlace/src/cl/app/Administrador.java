@@ -47,12 +47,6 @@ public class Administrador extends javax.swing.JFrame {
 
         jLabel1.setText("Nombre:");
 
-        txtNombreA.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreAActionPerformed(evt);
-            }
-        });
-
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Vendedor"));
 
         jLabel2.setText("Nombre:");
@@ -101,6 +95,11 @@ public class Administrador extends javax.swing.JFrame {
         });
 
         jButton3.setText("Modulo Restauracion");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Modulo Vivienda");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -110,6 +109,11 @@ public class Administrador extends javax.swing.JFrame {
         });
 
         jButton5.setText("Modulo Log");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -175,17 +179,25 @@ public class Administrador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNombreAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreAActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreAActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        Estadistica e = new Estadistica();
+        e.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        ModuloV mv = new ModuloV();
+        mv.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        ModuloR mr = new ModuloR();
+        mr.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        ModuloL ml = new ModuloL();
+        ml.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
