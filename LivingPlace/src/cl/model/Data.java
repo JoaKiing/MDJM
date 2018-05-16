@@ -11,12 +11,13 @@ public class Data {
     private ResultSet rs;
     private String query;
     private Conexion con;
+    
 
     public Data() throws SQLException, ClassNotFoundException{
         con = new Conexion("localhost","sistema_matriculas","root","");
     }
     
-    public boolean existeRut(int rut) throws SQLException{
+    public boolean existeRut(String rut) throws SQLException{
         boolean existe = false;
         
         query = "SELECT COUNT(*) id FROM persona WHERE run = "+rut+" ";

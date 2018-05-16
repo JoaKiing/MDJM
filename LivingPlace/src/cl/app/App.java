@@ -5,6 +5,11 @@
  */
 package cl.app;
 
+import cl.model.Data;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author JOAQUIN CABELLO
@@ -16,6 +21,7 @@ public class App extends javax.swing.JFrame {
      */
     public App() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -29,7 +35,7 @@ public class App extends javax.swing.JFrame {
 
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtRun = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
@@ -42,7 +48,7 @@ public class App extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/image/ini.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 200, 30));
+        getContentPane().add(txtRun, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 200, 30));
 
         jButton1.setText("Iniciar Sesion");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -50,7 +56,7 @@ public class App extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 220, 140, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 220, 140, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/image/blue.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -59,9 +65,10 @@ public class App extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Administrador a = new Administrador();
-        Vendedor v = new Vendedor();
         
+        Vendedor v = new Vendedor();
+        Administrador a = new Administrador();
+
         a.setVisible(true);
         v.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -106,6 +113,6 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtRun;
     // End of variables declaration//GEN-END:variables
 }
