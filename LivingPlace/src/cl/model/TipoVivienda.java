@@ -4,16 +4,16 @@ package cl.model;
  *
  * @author JOAQUIN CABELLO
  */
-public class TipoPersona {
+public class TipoVivienda {
     private int id;
     private String nombre;
 
-    public TipoPersona(int id, String nombre) {
-        this.id = id;
-        this.nombre = nombre;
+    public TipoVivienda() {
     }
 
-    public TipoPersona() {
+    public TipoVivienda(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
     }
 
     public int getId() {
@@ -31,10 +31,13 @@ public class TipoPersona {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
     @Override
     public String toString() {
         return nombre;
     }
+    
+    
+    
     
 }
