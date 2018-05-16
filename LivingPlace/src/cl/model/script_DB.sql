@@ -15,8 +15,8 @@ CREATE TABLE tipo_vivienda(
 INSERT INTO tipo_persona VALUES(NULL, 'Administrador');
 INSERT INTO tipo_persona VALUES(NULL, 'Vendedor');
 
-INSERT INTO tipo_vivienda(NULL,'Casa');
-INSERT INTO tipo_vivienda(NULL,'Departamento');
+INSERT INTO tipo_vivienda VALUES(NULL,'Casa');
+INSERT INTO tipo_vivienda VALUES(NULL,'Departamento');
 
 
 
