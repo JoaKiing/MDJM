@@ -16,11 +16,14 @@ import java.util.logging.Logger;
  */
 public class App extends javax.swing.JFrame {
 
-    /**
-     * Creates new form App
-     */
+    private Data d;
     public App() {
         initComponents();
+        try {
+            d = new Data();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
         setLocationRelativeTo(null);
     }
 
@@ -68,9 +71,16 @@ public class App extends javax.swing.JFrame {
         
         Vendedor v = new Vendedor();
         Administrador a = new Administrador();
-
-        a.setVisible(true);
-        v.setVisible(true);
+        
+        String rut = txtRun.getText();
+        
+        if ("11-1".equals(rut)) {
+            a.setVisible(true);
+        }else{
+             v.setVisible(true);
+        }
+        setVisible(false);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -32,6 +32,7 @@ public class Administrador extends javax.swing.JFrame {
             Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

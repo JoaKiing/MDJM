@@ -2,14 +2,6 @@ CREATE DATABASE living_place; -- DROP DATABASE living_place;
 
 USE living_place;
 
-CREATE TABLE tipo_persona( 
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(50)
-); -- SELECT * FROM tipo_persona;
-
-INSERT INTO tipo_persona VALUES(NULL, 'Administrador');
-INSERT INTO tipo_persona VALUES(NULL, 'Vendedor');
-
 CREATE TABLE tipo_vivienda( 
     id INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50)
@@ -22,9 +14,15 @@ CREATE TABLE vendedor(
     id INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50),
     run VARCHAR(13) UNIQUE
-); -- SELECT * FROM persona;
+); -- SELECT * FROM vendedor;
 
-INSERT INTO vendedor VALUES(NULL,'admin','11-1');
+CREATE TABLE administrador(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(50),
+    run VARCHAR(13) UNIQUE
+); -- SELECT * FROM administrador;
+
+INSERT INTO administrador VALUES(NULL,'admin','11-1');
 
 CREATE TABLE cliente(
     id INT PRIMARY KEY AUTO_INCREMENT,
