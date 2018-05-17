@@ -9,6 +9,7 @@ import cl.model.Data;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -51,6 +52,12 @@ public class App extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/image/ini.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, -1, -1));
+
+        txtRun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRunActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtRun, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 200, 30));
 
         jButton1.setText("Iniciar Sesion");
@@ -68,7 +75,8 @@ public class App extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
+int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro?");        
         Vendedor v = new Vendedor();
         Administrador a = new Administrador();
         
@@ -77,11 +85,24 @@ public class App extends javax.swing.JFrame {
         if ("11-1".equals(rut)) {
             a.setVisible(true);
         }else{
-             v.setVisible(true);
+             if("22-2".equals(rut)){
+                 v.setVisible(true);
+             }else{
+                 if("33-3".equals(rut))
+                     v.setVisible(true);
+                 }
+                     
+        
+             
         }
+        
         setVisible(false);
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRunActionPerformed
+
+    }//GEN-LAST:event_txtRunActionPerformed
 
     /**
      * @param args the command line arguments
