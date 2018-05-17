@@ -27,7 +27,7 @@ CREATE TABLE persona(
     tipo_persona_fk INT REFERENCES tipo_persona(id)
 ); -- SELECT * FROM persona;
 
-INSERT INTO persona VALUES(NULL,'admin','11-1',1);
+INSERT INTO persona VALUES(NULL,'admin','11-1');
 
 CREATE TABLE cliente(
     id INT PRIMARY KEY AUTO_INCREMENT,

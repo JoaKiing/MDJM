@@ -13,16 +13,20 @@ public class Persona {
      private int id;
     private String nombre;
     private String rut;
-    private int tipo_FK;
 
     public Persona() {
     }
 
-    public Persona(int id, String nombre, String rut, int tipo_FK) {
+    public Persona(String nombre, String rut) {
+        this.nombre = nombre;
+        this.rut = rut;
+    }
+    
+
+    public Persona(int id, String nombre, String rut) {
         this.id = id;
         this.nombre = nombre;
         this.rut = rut;
-        this.tipo_FK = tipo_FK;
     }
 
     public int getId() {
@@ -49,17 +53,11 @@ public class Persona {
         this.rut = rut;
     }
 
-    public int getTipo_FK() {
-        return tipo_FK;
-    }
-
-    public void setTipo_FK(int tipo_FK) {
-        this.tipo_FK = tipo_FK;
-    }
+   
 
     @Override
     public String toString() {
-        return "Persona{" + "id=" + id + ", nombre=" + nombre + ", rut=" + rut + ", tipo_FK=" + tipo_FK + '}';
+        return "Persona{" + "id=" + id + ", nombre=" + nombre + ", rut=" + rut +'}';
     }
     
 }
