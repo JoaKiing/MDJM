@@ -33,9 +33,15 @@ public class Data {
         return existe;
     }
 
-     public void registrarVendedor(Persona nuevo) throws SQLException {
-        query = "INSERT INTO persona VALUES(NULL, '" + nuevo.getNombre() + "', '" + nuevo.getRut()+ "');";
+     public void registrarVendedor(Vendedor nuevo) throws SQLException {
+        query = "INSERT INTO vendedor VALUES(NULL, '" + nuevo.getNombre() + "', '" + nuevo.getRut()+ "');";
         con.ejecutar(query);
     }
+     
+     public void registrarCliente(Cliente nuevo) throws SQLException {
+        query = "INSERT INTO cliente VALUES(NULL, '" + nuevo.getNombre() + "', '" +nuevo.getRun()+ "', '" +nuevo.getSueldo()+ "');";
+        con.ejecutar(query);
+    }
+     
 
 }

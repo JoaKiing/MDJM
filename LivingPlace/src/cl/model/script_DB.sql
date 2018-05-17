@@ -7,27 +7,24 @@ CREATE TABLE tipo_persona(
     nombre VARCHAR(50)
 ); -- SELECT * FROM tipo_persona;
 
+INSERT INTO tipo_persona VALUES(NULL, 'Administrador');
+INSERT INTO tipo_persona VALUES(NULL, 'Vendedor');
+
 CREATE TABLE tipo_vivienda( 
     id INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50)
 ); -- SELECT * FROM tipo_vivienda;
 
-INSERT INTO tipo_persona VALUES(NULL, 'Administrador');
-INSERT INTO tipo_persona VALUES(NULL, 'Vendedor');
-
 INSERT INTO tipo_vivienda VALUES(NULL,'Casa');
 INSERT INTO tipo_vivienda VALUES(NULL,'Departamento');
 
-
-
-CREATE TABLE persona(
+CREATE TABLE vendedor(
     id INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50),
-    run VARCHAR(13) UNIQUE,
-    tipo_persona_fk INT REFERENCES tipo_persona(id)
+    run VARCHAR(13) UNIQUE
 ); -- SELECT * FROM persona;
 
-INSERT INTO persona VALUES(NULL,'admin','11-1');
+INSERT INTO vendedor VALUES(NULL,'admin','11-1');
 
 CREATE TABLE cliente(
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -36,6 +33,7 @@ CREATE TABLE cliente(
     sueldo INT
 ); -- SELECT * FROM cliente;
 
+INSERT INTO cliente VALUES(NULL,'Daisy','11-1',100000);
 
 CREATE TABLE vivienda(
     id INT PRIMARY KEY AUTO_INCREMENT,

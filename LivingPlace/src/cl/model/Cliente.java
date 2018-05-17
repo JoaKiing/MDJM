@@ -10,6 +10,13 @@ public class Cliente {
     private String nombre;
     private int sueldo;
 
+    public Cliente(String run, String nombre, int sueldo) {
+        this.run = run;
+        this.nombre = nombre;
+        this.sueldo = sueldo;
+    }
+    
+    
     public Cliente(int id, String run, String nombre, int sueldo) {
         this.id = id;
         this.run = run;

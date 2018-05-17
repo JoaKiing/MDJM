@@ -5,17 +5,26 @@
  */
 package cl.app;
 
+import cl.model.Cliente;
+import cl.model.Data;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author JOAQUIN CABELLO
  */
 public class Vendedor extends javax.swing.JFrame {
-
-    /**
-     * Creates new form joako
-     */
+    private Data d;
     public Vendedor() {
         initComponents();
+        try {
+            d = new Data();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(Vendedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         setLocationRelativeTo(null);
         setResizable(false);
@@ -81,6 +90,11 @@ public class Vendedor extends javax.swing.JFrame {
         jLabel15.setText("Sueldo: ");
 
         btnRegistrarCliente4.setText("Registrar");
+        btnRegistrarCliente4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarCliente4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -287,6 +301,29 @@ public class Vendedor extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnCambioAparienciaActionPerformed
+
+    private void btnRegistrarCliente4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCliente4ActionPerformed
+        try {
+                String nombre = txtNombreCliente4.getText();
+                String rut = txtRutCliente4.getText();
+                int sueldo = Integer.parseInt(txtSueldoCliente4.getText());
+
+                Cliente c = new Cliente(rut, nombre, sueldo);
+
+
+                d.registrarCliente(c);
+
+                txtNombreCliente4.setText(null);
+                txtRutCliente4.setText(null);
+                txtSueldoCliente4.setText(null);
+
+                JOptionPane.showMessageDialog(this, "Cliente registrado!");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+            }
+
+    
+    }//GEN-LAST:event_btnRegistrarCliente4ActionPerformed
 
     /**
      * @param args the command line arguments
