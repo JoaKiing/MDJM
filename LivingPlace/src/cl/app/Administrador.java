@@ -109,11 +109,6 @@ public class Administrador extends javax.swing.JFrame {
         });
 
         jButton5.setText("Modulo Log");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -193,11 +188,6 @@ public class Administrador extends javax.swing.JFrame {
         ModuloR mr = new ModuloR();
         mr.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        ModuloL ml = new ModuloL();
-        ml.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
