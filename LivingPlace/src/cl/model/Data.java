@@ -33,7 +33,7 @@ public class Data {
         return existe;
     }
 
-     public void registrarVendedor(Vendedor nuevo) throws SQLException {
+     public void registrarVendedor(Vendedorr nuevo) throws SQLException {
         query = "INSERT INTO vendedor VALUES(NULL, '" + nuevo.getNombre() + "', '" + nuevo.getRut()+ "');";
         con.ejecutar(query);
     }
@@ -42,6 +42,27 @@ public class Data {
         query = "INSERT INTO cliente VALUES(NULL, '" + nuevo.getNombre() + "', '" +nuevo.getRun()+ "', '" +nuevo.getSueldo()+ "');";
         con.ejecutar(query);
     }
+     public void orderByDesc() throws SQLException {
+        query = "SELECT * FROM vivienda ORDER BY precio DESC;";
+        con.ejecutar(query);
+    }
+
+    public void orderByAsc() throws SQLException {
+        query = "SELECT * FROM vivienda ORDER BY precio ASC;";
+        con.ejecutar(query);
+    }
+
+    public void buscarVivienda(TipoVivienda tipo) throws SQLException {
+        query = "SELECT * FROM nombreVivienda  WHERE nombre = '" + tipo.getNombre() + "';";
+        con.ejecutarSelect(query);
+           
+    }
+    public void mostarNombre(Vendedorr rut) throws SQLException {
+        query = "SELECT  nombre FROM vendedor WHERE run = '"+rut.getRut()+"';";
+        con.ejecutarSelect(query);
+        
+    }
+    
      
 
 }

@@ -83,9 +83,6 @@ public class App extends javax.swing.JFrame {
         
         Administrador a = new Administrador();
         String rut = txtRun.getText();
-        
-        v = new Vendedorr(rut);
-        
         setVisible(false);
         
     }//GEN-LAST:event_jButton1ActionPerformed

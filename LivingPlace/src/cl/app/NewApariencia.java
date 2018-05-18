@@ -28,12 +28,8 @@ public class NewApariencia extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton10 = new javax.swing.JRadioButton();
-        jRadioButton19 = new javax.swing.JRadioButton();
         btgBoton = new javax.swing.ButtonGroup();
         btgLetra = new javax.swing.ButtonGroup();
-        jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         rbrNegroB = new javax.swing.JRadioButton();
@@ -56,14 +52,6 @@ public class NewApariencia extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        jRadioButton1.setText("jRadioButton1");
-
-        jRadioButton10.setText("jRadioButton10");
-
-        jRadioButton19.setText("jRadioButton19");
-
-        jButton3.setText("jButton3");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Cambiar Apariencia"));
@@ -74,24 +62,31 @@ public class NewApariencia extends javax.swing.JFrame {
         rbrNegroB.setText("Negro");
 
         btgBoton.add(rbrRojoB);
+        rbrRojoB.setForeground(new java.awt.Color(204, 0, 0));
         rbrRojoB.setText("Rojo");
 
         btgBoton.add(rbrMoradoB);
+        rbrMoradoB.setForeground(new java.awt.Color(153, 0, 153));
         rbrMoradoB.setText("Morado");
 
         btgBoton.add(rbrAluzB);
+        rbrAluzB.setForeground(new java.awt.Color(0, 0, 204));
         rbrAluzB.setText("Azul");
 
         btgBoton.add(rbrVerdeB);
+        rbrVerdeB.setForeground(new java.awt.Color(0, 255, 0));
         rbrVerdeB.setText("Verde");
 
         btgBoton.add(rbrAmarilloB);
+        rbrAmarilloB.setForeground(new java.awt.Color(255, 255, 0));
         rbrAmarilloB.setText("Amarillo");
 
         btgBoton.add(rbrNaranjoB);
+        rbrNaranjoB.setForeground(new java.awt.Color(255, 102, 0));
         rbrNaranjoB.setText("Naranjo");
 
         btgBoton.add(rbrPlomoB);
+        rbrPlomoB.setForeground(new java.awt.Color(153, 153, 153));
         rbrPlomoB.setText("Plomo");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -138,24 +133,31 @@ public class NewApariencia extends javax.swing.JFrame {
         rbrNegro.setText("Negro");
 
         btgLetra.add(rbrRojo);
+        rbrRojo.setForeground(new java.awt.Color(255, 0, 0));
         rbrRojo.setText("Rojo");
 
         btgLetra.add(rbrMorado);
+        rbrMorado.setForeground(new java.awt.Color(204, 0, 204));
         rbrMorado.setText("Morado");
 
         btgLetra.add(rbrAzul);
+        rbrAzul.setForeground(new java.awt.Color(0, 0, 204));
         rbrAzul.setText("Azul");
 
         btgLetra.add(rbrVerde);
+        rbrVerde.setForeground(new java.awt.Color(51, 204, 0));
         rbrVerde.setText("Verde");
 
         btgLetra.add(rbrAmarillo);
+        rbrAmarillo.setForeground(new java.awt.Color(255, 255, 0));
         rbrAmarillo.setText("Amarillo");
 
         btgLetra.add(rbrNaranjo);
+        rbrNaranjo.setForeground(new java.awt.Color(255, 102, 0));
         rbrNaranjo.setText("Naranjo");
 
         btgLetra.add(rbrPlomo);
+        rbrPlomo.setForeground(new java.awt.Color(153, 153, 153));
         rbrPlomo.setText("Plomo");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -287,13 +289,9 @@ public class NewApariencia extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btgLetra;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton10;
-    private javax.swing.JRadioButton jRadioButton19;
     private javax.swing.JRadioButton rbrAluzB;
     private javax.swing.JRadioButton rbrAmarillo;
     private javax.swing.JRadioButton rbrAmarilloB;

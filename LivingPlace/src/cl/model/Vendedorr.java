@@ -9,21 +9,21 @@ package cl.model;
  *
  * @author GAMERS
  */
-public class Vendedor {
+public class Vendedorr {
      private int id;
     private String nombre;
     private String rut;
 
-    public Vendedor() {
+    public Vendedorr() {
     }
 
-    public Vendedor(String nombre, String rut) {
+    public Vendedorr(String nombre, String rut) {
         this.nombre = nombre;
         this.rut = rut;
     }
     
 
-    public Vendedor(int id, String nombre, String rut) {
+    public Vendedorr(int id, String nombre, String rut) {
         this.id = id;
         this.nombre = nombre;
         this.rut = rut;
