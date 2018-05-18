@@ -44,12 +44,28 @@ CREATE TABLE vivienda(
     nuevo_usado BOOLEAN
 ); -- SELECT * FROM vivienda;
 
-CREATE TABLE modulo_log(
+CREATE TABLE registro_venta(
     id INT PRIMARY KEY AUTO_INCREMENT,
     vendedor_fk INT REFERENCES persona(id),
     vivienda_fk INT REFERENCES vivienda(id),
     cliente_fk INT REFERENCES cliente(id),
     fecha DATETIME
+);
+
+
+CREATE TABLE estado(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(50)
+);
+
+INSERT INTO estado VALUES(NULL,'Vendida');
+INSERT INTO estado VALUES(NULL,'Arrendada');
+INSERT INTO estado VALUES(NULL,'Disponible');
+
+CREATE TABLE estado_vivienda(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    fk_vivienda INT REFERENCES vivienda(id),
+    fk_estado INT REFERENCES estado(id)
 );
 
 CREATE VIEW datosModulo_log  -- SELECT * FROM datosModulo_log;
@@ -66,7 +82,7 @@ SELECT v.nombre AS 'Vendedor',
        cl.run AS 'Run Cliente',
        cl.sueldo AS 'Sueldo Cliente'
 FROM
-	   modulo_log ml
+	   registro_venta ml
        INNER JOIN vendedor v
        ON ml.vendedor_fk = v.id
        INNER JOIN vivienda vi
