@@ -6,6 +6,7 @@
 package cl.app;
 
 import cl.model.Data;
+import cl.model.Vendedorr;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +19,8 @@ import javax.swing.JOptionPane;
 public class App extends javax.swing.JFrame {
 
     private Data d;
+    private Vendedorr v;
+
     public App() {
         initComponents();
         try {
@@ -76,25 +79,12 @@ public class App extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro?");        
-        Vendedor v = new Vendedor();
-        Administrador a = new Administrador();
+        int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro?");
         
+        Administrador a = new Administrador();
         String rut = txtRun.getText();
         
-        if ("11-1".equals(rut)) {
-            a.setVisible(true);
-        }else{
-             if("22-2".equals(rut)){
-                 v.setVisible(true);
-             }else{
-                 if("33-3".equals(rut))
-                     v.setVisible(true);
-                 }
-                     
-        
-             
-        }
+        v = new Vendedorr(rut);
         
         setVisible(false);
         

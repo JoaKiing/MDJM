@@ -6,7 +6,7 @@
 package cl.app;
 
 import cl.model.Data;
-import cl.model.Vendedor;
+import cl.model.Vendedorr;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -227,7 +227,7 @@ public class Administrador extends javax.swing.JFrame {
             String nombre = txtNombreV.getText();
             String rut = txtRutV.getText();
 
-            Vendedor v = new Vendedor(nombre, rut);
+            Vendedorr v = new Vendedorr(nombre, rut);
             d.registrarVendedor(v);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "ERROR " + ex.getMessage());
