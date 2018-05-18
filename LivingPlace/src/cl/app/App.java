@@ -25,6 +25,7 @@ public class App extends javax.swing.JFrame {
         initComponents();
         try {
             d = new Data();
+            
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }

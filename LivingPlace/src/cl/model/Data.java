@@ -42,18 +42,20 @@ public class Data {
         query = "INSERT INTO cliente VALUES(NULL, '" + nuevo.getNombre() + "', '" +nuevo.getRun()+ "', '" +nuevo.getSueldo()+ "');";
         con.ejecutar(query);
     }
-     public void orderByDesc() throws SQLException {
-        query = "SELECT * FROM vivienda ORDER BY precio DESC;";
-        con.ejecutar(query);
+     public void orderByDesc(TipoVivienda tipo) throws SQLException {
+        query = "SELECT * FROM vivienda ORDER BY precio  " + tipo.getNombre() + ";";
+        con.ejecutarSelect(query);
+           
     }
 
-    public void orderByAsc() throws SQLException {
-        query = "SELECT * FROM vivienda ORDER BY precio ASC;";
-        con.ejecutar(query);
+    public void orderByAsc(TipoVivienda tipo) throws SQLException {
+        query = "SELECT * FROM vivienda ORDER BY precio  " + tipo.getNombre() + ";";
+        con.ejecutarSelect(query);
+           
     }
 
     public void buscarVivienda(TipoVivienda tipo) throws SQLException {
-        query = "SELECT * FROM nombreVivienda  WHERE nombre = '" + tipo.getNombre() + "';";
+        query = "SELECT * FROM tipo_vivienda WHERE nombre = '" + tipo.getNombre() + "';";
         con.ejecutarSelect(query);
            
     }

@@ -14,6 +14,7 @@ public class Vivienda {
     private int precio;
     private boolean usado_nuevo;
 
+    
     public Vivienda() {
     }
 

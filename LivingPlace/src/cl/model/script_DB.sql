@@ -90,35 +90,8 @@ FROM
        INNER JOIN tipo_vivienda tv
        ON vi.tipo_vivienda_FK = tv.id
        INNER JOIN cliente cl 
-	   ON ml.cliente_fk = cl.id
-
-       
-
-
-CREATE VIEW datosModulo_log  -- SELECT * FROM datosModulo_log;
-AS
-SELECT v.nombre AS 'Vendedor',
-       v.run AS 'Rut Vendedor',
-       vi.direccion AS 'Direccion de vivienda',
-       vi.cantidad_pieza AS 'Cantidad Piezas',
-       vi.cantidad_baño AS 'Cantidad Baños',
-       tv.nombre AS 'Tipo Vivienda',
-       vi.precio AS 'Precio vivienda',
-       vi.nuevo_usado AS 'Nuevo o Usado',
-       cl.nombre AS 'Nombre Cliente',
-       cl.run AS 'Run Cliente',
-       cl.sueldo AS 'Sueldo Cliente',
-       ml.fecha AS 'Fecha registro'
-FROM
-	   modulo_log ml
-       INNER JOIN vendedor v
-       ON ml.vendedor_fk = v.id
-       INNER JOIN vivienda vi
-       ON ml.vivienda_fk = vi.id
-       INNER JOIN tipo_vivienda tv
-       ON vi.tipo_vivienda_FK = tv.id
-       INNER JOIN cliente cl 
 	   ON ml.cliente_fk = cl.id;
+
 
 SELECT * FROM vivienda ORDER BY precio ASC;
 
@@ -126,13 +99,3 @@ SELECT * FROM vivienda ORDER BY precio ASC;
 CREATE VIEW nombreVivienda AS -- SELECT * FROM nombreVivienda;
 SELECT tv.nombre AS 'Vivienda' 
 FROM vivienda v INNER JOIN tipo_vivienda tv ON tv.id = v.tipo_vivienda_fk;
-
-       
-       
-       
-       
-       
-       
-       
-       
-       

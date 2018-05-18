@@ -9,6 +9,7 @@ import cl.model.Cliente;
 import cl.model.Conexion;
 import cl.model.Data;
 import cl.model.TipoVivienda;
+import cl.model.Vivienda;
 import java.awt.Color;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -32,6 +33,7 @@ import javax.swing.table.DefaultTableModel;
 public class Vendedor extends javax.swing.JFrame {
 
     private Data d;
+    private App a;
     private Conexion c;
     private TipoVivienda t;
     private String orden;
@@ -39,6 +41,7 @@ public class Vendedor extends javax.swing.JFrame {
 
     public Vendedor() {
         initComponents();
+        a = new App();
         tipoVivienda = new ArrayList<>();
         try {
             d = new Data();
@@ -117,7 +120,7 @@ public class Vendedor extends javax.swing.JFrame {
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Busqueda"));
 
         btgOrden.add(rbDescendente1);
-        rbDescendente1.setText("Descendente");
+        rbDescendente1.setText("DESC");
         rbDescendente1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbDescendente1ActionPerformed(evt);
@@ -125,7 +128,7 @@ public class Vendedor extends javax.swing.JFrame {
         });
 
         btgOrden.add(rbAscendente1);
-        rbAscendente1.setText("Ascendente");
+        rbAscendente1.setText("ASC");
         rbAscendente1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbAscendente1ActionPerformed(evt);
@@ -150,18 +153,17 @@ public class Vendedor extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
                         .addComponent(rbDescendente1)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(rbAscendente1))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cboTipoVivienda1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBuscarVivienda1)))
+                    .addComponent(cboTipoVivienda1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnBuscarVivienda1)
                 .addGap(328, 328, 328))
         );
         jPanel8Layout.setVerticalGroup(
@@ -400,7 +402,7 @@ public class Vendedor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarCliente4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCliente4ActionPerformed
-        orden();
+
         try {
             String nombre = txtNombreCliente4.getText();
             String rut = txtRutCliente4.getText();
@@ -423,8 +425,9 @@ public class Vendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarCliente4ActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        this.setVisible(false);
-        new App().setVisible(true);
+        
+        a.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void rbDescendente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDescendente1ActionPerformed
@@ -436,15 +439,16 @@ public class Vendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_rbAscendente1ActionPerformed
 
     private void btnBuscarVivienda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarVivienda1ActionPerformed
+        orden();
         t = (TipoVivienda) cboTipoVivienda1.getSelectedItem();
-        
+
         try {
             d.buscarVivienda(t);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-        
-        
+
+
     }//GEN-LAST:event_btnBuscarVivienda1ActionPerformed
 
     private void btnVenderViviendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderViviendaActionPerformed
@@ -452,8 +456,8 @@ public class Vendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVenderViviendaActionPerformed
 
     private void btnCambiarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarBotonActionPerformed
-        Color c = JColorChooser.showDialog(rootPane,"Elija un color", this.getBackground());
-        
+        Color c = JColorChooser.showDialog(rootPane, "Elija un color", this.getBackground());
+
         btnArrendar.setBackground(c);
         btnBuscarVivienda1.setBackground(c);
         btnCambiarBoton.setBackground(c);
@@ -461,12 +465,12 @@ public class Vendedor extends javax.swing.JFrame {
         btnVenderVivienda.setBackground(c);
         btnVolver.setBackground(c);
         btnCambiarL.setBackground(c);
-        
-        
+
+
     }//GEN-LAST:event_btnCambiarBotonActionPerformed
 
     private void btnCambiarLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarLActionPerformed
-        Color c = JColorChooser.showDialog(rootPane,"Elija un color", this.getBackground());
+        Color c = JColorChooser.showDialog(rootPane, "Elija un color", this.getBackground());
         btnArrendar.setForeground(c);
         btnBuscarVivienda1.setForeground(c);
         btnCambiarBoton.setForeground(c);
@@ -550,7 +554,7 @@ public class Vendedor extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(titulos);
         tblDatos.setModel(model);
-        
+
     }
 
     public void vivienda() {
@@ -563,20 +567,28 @@ public class Vendedor extends javax.swing.JFrame {
     }
 
     public void orden() {
+        try {
+            String tipo1 = rbAscendente1.getActionCommand();
+            String tipo2 = rbDescendente1.getActionCommand();
 
-        if ("Descendete".equals(orden)) {
-            try {
-                d.orderByDesc();
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage());
+            TipoVivienda v = new TipoVivienda(tipo1);
+            TipoVivienda vi = new TipoVivienda(tipo2);
+
+            if ("Descendete".equals(orden)) {
+                d.orderByDesc(vi);
+                JOptionPane.showMessageDialog(this, "Ordenado de forma Descendente Por el precio!");
+
+            } else {
+                d.orderByAsc(v);
+                JOptionPane.showMessageDialog(this, "Ordenado de forma Ascendente Por el precio!");
             }
-        } else {
-            try {
-                d.orderByAsc();
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage());
-            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }
     
+    public void mostraDatos(){
+        
+    }
+
 }

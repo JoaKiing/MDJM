@@ -8,6 +8,10 @@ public class TipoVivienda {
     private int id;
     private String nombre;
 
+    public TipoVivienda(String nombre) {
+        this.nombre = nombre;
+    }
+
     public TipoVivienda() {
     }
 
