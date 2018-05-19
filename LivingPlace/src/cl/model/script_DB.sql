@@ -16,6 +16,8 @@ CREATE TABLE vendedor(
     run VARCHAR(13) UNIQUE
 ); -- SELECT * FROM vendedor;
 
+INSERT INTO vendedor VALUES(NULL,'Matias','22-2');
+
 CREATE TABLE administrador(
     id INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50),
@@ -31,7 +33,7 @@ CREATE TABLE cliente(
     sueldo INT
 ); -- SELECT * FROM cliente;
 
-INSERT INTO cliente VALUES(NULL,'Daisy','11-1',100000);
+INSERT INTO cliente VALUES(NULL,'Daisy','33-3',100000);
 
 CREATE TABLE vivienda(
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -52,10 +54,16 @@ CREATE TABLE registro_venta(
     fecha DATETIME
 );
 
+CREATE TABLE vendedorCliente(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    vendedor_fk INT REFERENCES persona(id),
+    cliente_fk INT REFERENCES cliente(id),
+    fecha DATE,
+    hora TIME,
+    accion VARCHAR(10)
+);
 
-
-
-
+INSERT INTO vendedorCliente VALUES(NULL,'1','1','2018/03/08','23:00:18','Vendio');
 
 CREATE TABLE estado(
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -96,10 +104,23 @@ FROM
        INNER JOIN cliente cl 
 	   ON ml.cliente_fk = cl.id;
 
-
-SELECT * FROM vivienda ORDER BY precio ASC;
-
-
 CREATE VIEW nombreVivienda AS -- SELECT * FROM nombreVivienda;
 SELECT tv.nombre AS 'Vivienda' 
 FROM vivienda v INNER JOIN tipo_vivienda tv ON tv.id = v.tipo_vivienda_fk;
+
+CREATE VIEW modulo_log AS -- SELECT * FROM modulo_log;
+SELECT v.nombre AS 'Nombre Vendedor',
+	   v.run AS 'Run Vendedor',
+       c.nombre AS 'Nombre Cliente',
+       vc.fecha AS 'Fecha de registro',
+       vc.hora AS 'Hora de registro',
+       vc.accion AS 'Acción de registro'
+FROM
+	   vendedorCliente vc 
+       INNER JOIN vendedor v
+       ON vc.vendedor_fk = v.id
+       INNER JOIN cliente c
+       ON vc.cliente_fk = c.id;
+
+
+SELECT TIME(now());

@@ -1,21 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cl.app;
 
-/**
- *
- * @author daisydaniela36
- */
+import javax.swing.table.DefaultTableModel;
+
 public class ModuloL extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ModuloL
-     */
+
     public ModuloL() {
         initComponents();
+        mostrarDatos();
+        
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -29,13 +23,13 @@ public class ModuloL extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtbActividad = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Actividades de vendedor"));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtbActividad.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -46,7 +40,7 @@ public class ModuloL extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtbActividad);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -54,7 +48,7 @@ public class ModuloL extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -122,6 +116,13 @@ public class ModuloL extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jtbActividad;
     // End of variables declaration//GEN-END:variables
+    public void mostrarDatos() {
+        String[] titulos = {"Nombre Vendedor", "Run Vendedor", "Nombre Cliente", "Fecha Registro", "Hora Registro", "Accion del Vendedor"};
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(titulos);
+        jtbActividad.setModel(model);
+    }
+
 }
