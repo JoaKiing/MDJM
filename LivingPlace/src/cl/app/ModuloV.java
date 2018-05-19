@@ -11,12 +11,11 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ModuloV extends javax.swing.JFrame {
-
+    
     private List<TipoVivienda> tipoVivienda;
     private Data d;
     private int estado;
-   
-
+    
     public ModuloV() {
         initComponents();
         setLocationRelativeTo(null);
@@ -29,7 +28,7 @@ public class ModuloV extends javax.swing.JFrame {
             Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -205,13 +204,27 @@ public class ModuloV extends javax.swing.JFrame {
             int cantBaño = Integer.parseInt(txtCantBaños.getText());
             int tipoVivienda = cboTipoVivienda.getSelectedIndex();
             int precio = Integer.parseInt(txtPrecio.getText());
-
-            Vivienda vi = new Vivienda(rol, direccion,cantPieza,cantBaño,tipoVivienda,precio,estado);
-            d.registrarVivienda(vi);
+            
+            if (tipoVivienda > -1) {
+                tipoVivienda++;
+                Vivienda vi = new Vivienda(rol, direccion, cantPieza, cantBaño, tipoVivienda, precio, estado);
+                d.registrarVivienda(vi);
+                
+                txtRol.setText("");
+                txtDireccion.setText("");
+                txtCantPiezas.setText("");
+                txtCantBaños.setText("");
+                cboTipoVivienda.setSelectedIndex(0);
+                txtPrecio.setText("");
+                rbtNueva.setSelected(true);
+                tipoVivienda--;
+            }
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "ERROR " + ex.getMessage());
         }
         
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void rbtUsadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtUsadaActionPerformed
@@ -256,15 +269,15 @@ public class ModuloV extends javax.swing.JFrame {
             }
         });
     }
-
+    
     private void initTipoVivienda() {
         tipoVivienda = new ArrayList<>();
-
+        
         tipoVivienda.add(new TipoVivienda(1, "Casa"));
         tipoVivienda.add(new TipoVivienda(2, "Departamento"));
-
+        
         cboTipoVivienda.removeAllItems();
-
+        
         for (TipoVivienda vivienda : tipoVivienda) {
             cboTipoVivienda.addItem(vivienda);
         }
