@@ -65,7 +65,7 @@ public class Data {
         
     }
     public void registrarVivienda(Vivienda nueva) throws SQLException {
-        query = "INSERT INTO vivienda VALUES(NULL, '" + nueva.getRol() + "', '" +nueva.getDireccion()+ "', '" +nueva.getCantPiezas()+ "','" +nueva.getCantBaños()+ "','" +nueva.getTipoVivienda()+ "','" +nueva.getPrecio()+ "','" +nueva.getUsado_nuevo()+ "');";
+        query = "INSERT INTO vivienda VALUES(NULL, '" + nueva.getRol() + "', '" +nueva.getDireccion()+ "', '" +nueva.getCantPiezas()+ "','" +nueva.getCantBaños()+ "','" +nueva.getTipoVivienda()+ "','" +nueva.getPrecio()+ "','" +nueva.getEstado()+ "');";
         con.ejecutar(query);
     
     }

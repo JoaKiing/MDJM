@@ -14,9 +14,13 @@ public class ModuloV extends javax.swing.JFrame {
 
     private List<TipoVivienda> tipoVivienda;
     private Data d;
+    private int estado;
    
 
     public ModuloV() {
+        initComponents();
+        setLocationRelativeTo(null);
+        initTipoVivienda();
         try {
             d = new Data();
         } catch (SQLException ex) {
@@ -24,10 +28,6 @@ public class ModuloV extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        initComponents();
-        setLocationRelativeTo(null);
-        initTipoVivienda();
     }
 
     @SuppressWarnings("unchecked")
@@ -74,6 +74,11 @@ public class ModuloV extends javax.swing.JFrame {
 
         btngEstadoVivienda.add(rbtNueva);
         rbtNueva.setText("Nueva");
+        rbtNueva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtNuevaActionPerformed(evt);
+            }
+        });
 
         btngEstadoVivienda.add(rbtUsada);
         rbtUsada.setText("Usada");
@@ -200,9 +205,8 @@ public class ModuloV extends javax.swing.JFrame {
             int cantBaño = Integer.parseInt(txtCantBaños.getText());
             int tipoVivienda = cboTipoVivienda.getSelectedIndex();
             int precio = Integer.parseInt(txtPrecio.getText());
-            boolean usado_nuevo = rbtNueva.isSelected();
 
-            Vivienda vi = new Vivienda(rol, direccion,cantPieza,cantBaño,tipoVivienda,precio,usado_nuevo);
+            Vivienda vi = new Vivienda(rol, direccion,cantPieza,cantBaño,tipoVivienda,precio,estado);
             d.registrarVivienda(vi);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "ERROR " + ex.getMessage());
@@ -211,8 +215,12 @@ public class ModuloV extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void rbtUsadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtUsadaActionPerformed
-        // TODO add your handling code here:
+        estado = 2;
     }//GEN-LAST:event_rbtUsadaActionPerformed
+
+    private void rbtNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtNuevaActionPerformed
+        estado = 1;
+    }//GEN-LAST:event_rbtNuevaActionPerformed
 
     /**
      * @param args the command line arguments

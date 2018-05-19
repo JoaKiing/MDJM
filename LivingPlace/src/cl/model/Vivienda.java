@@ -5,6 +5,7 @@ package cl.model;
  * @author JOAQUIN CABELLO
  */
 public class Vivienda {
+
     private int id;
     private String rol;
     private String direccion;
@@ -12,32 +13,20 @@ public class Vivienda {
     private int cantBaños;
     private int tipoVivienda;
     private int precio;
-    private boolean usado_nuevo;
+    private int estado;
 
-    
+    public Vivienda(String rol, String direccion, int cantPiezas, int cantBaños, int tipoVivienda, int precio, int estado) {
+
+        this.rol = rol;
+        this.direccion = direccion;
+        this.cantPiezas = cantPiezas;
+        this.cantBaños = cantBaños;
+        this.tipoVivienda = tipoVivienda;
+        this.precio = precio;
+        this.estado = estado;
+    }
+
     public Vivienda() {
-    }
-
-    public Vivienda(String rol, String direccion, int cantPiezas, int cantBaños, int tipoVivienda, int precio, boolean usado_nuevo) {
-        this.rol = rol;
-        this.direccion = direccion;
-        this.cantPiezas = cantPiezas;
-        this.cantBaños = cantBaños;
-        this.tipoVivienda = tipoVivienda;
-        this.precio = precio;
-        this.usado_nuevo = usado_nuevo;
-    }
-    
-
-    public Vivienda(int id,String rol, String direccion, int cantPiezas, int cantBaños, int tipoVivienda, int precio, boolean usado_nuevo) {
-        this.id = id;
-        this.rol = rol;
-        this.direccion = direccion;
-        this.cantPiezas = cantPiezas;
-        this.cantBaños = cantBaños;
-        this.tipoVivienda = tipoVivienda;
-        this.precio = precio;
-        this.usado_nuevo = usado_nuevo;
     }
 
     public int getId() {
@@ -96,13 +85,12 @@ public class Vivienda {
         this.precio = precio;
     }
 
-    public boolean getUsado_nuevo() {
-        return usado_nuevo;
+    public int getEstado() {
+        return estado;
     }
 
-    public void setUsado_nuevo(boolean usado_nuevo) {
-        this.usado_nuevo = usado_nuevo;
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
-    
-    
+
 }
