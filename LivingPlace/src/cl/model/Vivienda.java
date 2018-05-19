@@ -6,7 +6,7 @@ package cl.model;
  */
 public class Vivienda {
     private int id;
-    private int rol;
+    private String rol;
     private String direccion;
     private int cantPiezas;
     private int cantBaños;
@@ -18,7 +18,18 @@ public class Vivienda {
     public Vivienda() {
     }
 
-    public Vivienda(int id, int rol, String direccion, int cantPiezas, int cantBaños, int tipoVivienda, int precio, boolean usado_nuevo) {
+    public Vivienda(String rol, String direccion, int cantPiezas, int cantBaños, int tipoVivienda, int precio, boolean usado_nuevo) {
+        this.rol = rol;
+        this.direccion = direccion;
+        this.cantPiezas = cantPiezas;
+        this.cantBaños = cantBaños;
+        this.tipoVivienda = tipoVivienda;
+        this.precio = precio;
+        this.usado_nuevo = usado_nuevo;
+    }
+    
+
+    public Vivienda(int id,String rol, String direccion, int cantPiezas, int cantBaños, int tipoVivienda, int precio, boolean usado_nuevo) {
         this.id = id;
         this.rol = rol;
         this.direccion = direccion;
@@ -37,11 +48,11 @@ public class Vivienda {
         this.id = id;
     }
 
-    public int getRol() {
+    public String getRol() {
         return rol;
     }
 
-    public void setRol(int rol) {
+    public void setRol(String rol) {
         this.rol = rol;
     }
 
@@ -85,7 +96,7 @@ public class Vivienda {
         this.precio = precio;
     }
 
-    public boolean isUsado_nuevo() {
+    public boolean getUsado_nuevo() {
         return usado_nuevo;
     }
 

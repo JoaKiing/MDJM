@@ -53,6 +53,10 @@ CREATE TABLE registro_venta(
 );
 
 
+
+
+
+
 CREATE TABLE estado(
     id INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50)

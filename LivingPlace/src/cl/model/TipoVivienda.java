@@ -11,6 +11,7 @@ public class TipoVivienda {
     public TipoVivienda(String nombre) {
         this.nombre = nombre;
     }
+    
 
     public TipoVivienda() {
     }
