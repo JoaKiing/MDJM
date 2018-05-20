@@ -9,29 +9,21 @@ import cl.model.Cliente;
 import cl.model.Conexion;
 import cl.model.Data;
 import cl.model.TipoVivienda;
-import cl.model.Vivienda;
 import java.awt.Color;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ButtonModel;
-import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author JOAQUIN CABELLO
  */
 public class Vendedor extends javax.swing.JFrame {
-
+    private ListaVivienda lv;
     private Data d;
     private App a;
     private Conexion c;
@@ -48,7 +40,6 @@ public class Vendedor extends javax.swing.JFrame {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Vendedor.class.getName()).log(Level.SEVERE, null, ex);
         }
-        mostrarDatos();
         vivienda();
         setLocationRelativeTo(null);
         setResizable(false);
@@ -83,16 +74,10 @@ public class Vendedor extends javax.swing.JFrame {
         txtVivenda = new javax.swing.JTextField();
         lblVivienda = new javax.swing.JLabel();
         btnRegistrarCliente4 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblDatos = new javax.swing.JTable();
-        btnVenderVivienda = new javax.swing.JButton();
-        btnArrendar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        txtNombreTrabajador = new javax.swing.JTextField();
-        btnVolver = new javax.swing.JButton();
         btnCambiarBoton = new javax.swing.JButton();
         btnCambiarL = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txtNombreTrabajador = new javax.swing.JTextField();
 
         javax.swing.GroupLayout frameCambiarAparienciaLayout = new javax.swing.GroupLayout(frameCambiarApariencia.getContentPane());
         frameCambiarApariencia.getContentPane().setLayout(frameCambiarAparienciaLayout);
@@ -191,6 +176,20 @@ public class Vendedor extends javax.swing.JFrame {
             }
         });
 
+        btnCambiarBoton.setText("Cambiar Color Boton");
+        btnCambiarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCambiarBotonActionPerformed(evt);
+            }
+        });
+
+        btnCambiarL.setText("Cambiar Letra Boton");
+        btnCambiarL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCambiarLActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -224,6 +223,12 @@ public class Vendedor extends javax.swing.JFrame {
                                     .addComponent(txtSueldoCliente4)))
                             .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnCambiarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCambiarL, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,85 +253,14 @@ public class Vendedor extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtVivenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblVivienda))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Viviendas"));
-
-        tblDatos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tblDatos);
-        if (tblDatos.getColumnModel().getColumnCount() > 0) {
-            tblDatos.getColumnModel().getColumn(0).setResizable(false);
-            tblDatos.getColumnModel().getColumn(1).setResizable(false);
-            tblDatos.getColumnModel().getColumn(2).setResizable(false);
-            tblDatos.getColumnModel().getColumn(3).setResizable(false);
-        }
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCambiarBoton)
+                    .addComponent(btnCambiarL))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 22, Short.MAX_VALUE))
-        );
-
-        btnVenderVivienda.setText("Vender");
-        btnVenderVivienda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVenderViviendaActionPerformed(evt);
-            }
-        });
-
-        btnArrendar.setText("Arrendar");
 
         jLabel1.setText("Nombre:");
-
-        btnVolver.setText("volver");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
-            }
-        });
-
-        btnCambiarBoton.setText("Cambiar Color Boton");
-        btnCambiarBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCambiarBotonActionPerformed(evt);
-            }
-        });
-
-        btnCambiarL.setText("Cambiar Letra Boton");
-        btnCambiarL.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCambiarLActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jpjVentaArriendoLayout = new javax.swing.GroupLayout(jpjVentaArriendo);
         jpjVentaArriendo.setLayout(jpjVentaArriendoLayout);
@@ -337,20 +271,6 @@ public class Vendedor extends javax.swing.JFrame {
                 .addGroup(jpjVentaArriendoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpjVentaArriendoLayout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
-                        .addGroup(jpjVentaArriendoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpjVentaArriendoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpjVentaArriendoLayout.createSequentialGroup()
-                                    .addComponent(btnCambiarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btnCambiarL, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnVolver))
-                                .addGroup(jpjVentaArriendoLayout.createSequentialGroup()
-                                    .addComponent(btnVenderVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(424, 424, 424)
-                                    .addComponent(btnArrendar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jpjVentaArriendoLayout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -364,20 +284,9 @@ public class Vendedor extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jpjVentaArriendoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtNombreTrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVolver)
-                    .addComponent(btnCambiarBoton)
-                    .addComponent(btnCambiarL))
-                .addGroup(jpjVentaArriendoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpjVentaArriendoLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jpjVentaArriendoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnVenderVivienda)
-                            .addComponent(btnArrendar)))
-                    .addGroup(jpjVentaArriendoLayout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtNombreTrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -395,7 +304,7 @@ public class Vendedor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jpjVentaArriendo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -424,12 +333,6 @@ public class Vendedor extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnRegistrarCliente4ActionPerformed
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        
-        a.setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_btnVolverActionPerformed
-
     private void rbDescendente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDescendente1ActionPerformed
         orden = "Descendete";
     }//GEN-LAST:event_rbDescendente1ActionPerformed
@@ -447,23 +350,18 @@ public class Vendedor extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-
+        lv = new ListaVivienda();
+        lv.setVisible(true);
+        dispose();
 
     }//GEN-LAST:event_btnBuscarVivienda1ActionPerformed
-
-    private void btnVenderViviendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderViviendaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVenderViviendaActionPerformed
 
     private void btnCambiarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarBotonActionPerformed
         Color c = JColorChooser.showDialog(rootPane, "Elija un color", this.getBackground());
 
-        btnArrendar.setBackground(c);
         btnBuscarVivienda1.setBackground(c);
         btnCambiarBoton.setBackground(c);
         btnRegistrarCliente4.setBackground(c);
-        btnVenderVivienda.setBackground(c);
-        btnVolver.setBackground(c);
         btnCambiarL.setBackground(c);
 
 
@@ -471,12 +369,9 @@ public class Vendedor extends javax.swing.JFrame {
 
     private void btnCambiarLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarLActionPerformed
         Color c = JColorChooser.showDialog(rootPane, "Elija un color", this.getBackground());
-        btnArrendar.setForeground(c);
         btnBuscarVivienda1.setForeground(c);
         btnCambiarBoton.setForeground(c);
         btnRegistrarCliente4.setForeground(c);
-        btnVenderVivienda.setForeground(c);
-        btnVolver.setForeground(c);
         btnCambiarL.setForeground(c);
     }//GEN-LAST:event_btnCambiarLActionPerformed
 
@@ -518,13 +413,10 @@ public class Vendedor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btgOrden;
-    private javax.swing.JButton btnArrendar;
     private javax.swing.JButton btnBuscarVivienda1;
     private javax.swing.JButton btnCambiarBoton;
     private javax.swing.JButton btnCambiarL;
     private javax.swing.JButton btnRegistrarCliente4;
-    private javax.swing.JButton btnVenderVivienda;
-    private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<TipoVivienda> cboTipoVivienda1;
     private javax.swing.JFrame frameCambiarApariencia;
     private javax.swing.JLabel jLabel1;
@@ -533,15 +425,12 @@ public class Vendedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jpjVentaArriendo;
     private javax.swing.JLabel lblVivienda;
     private javax.swing.JRadioButton rbAscendente1;
     private javax.swing.JRadioButton rbDescendente1;
-    private javax.swing.JTable tblDatos;
     private javax.swing.JTextField txtNombreCliente4;
     private javax.swing.JTextField txtNombreTrabajador;
     private javax.swing.JTextField txtRutCliente4;
@@ -549,14 +438,7 @@ public class Vendedor extends javax.swing.JFrame {
     private javax.swing.JTextField txtVivenda;
     // End of variables declaration//GEN-END:variables
 
-    public void mostrarDatos() {
-        String[] titulos = {"N° de rol", "Dirección", "Cantidad de piezas", "Cantidad de baños", "Tipo de vivienda", "precio de arriendo", "Precio de venta", "Nueva ó usada"};
-        DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(titulos);
-        tblDatos.setModel(model);
-
-    }
-
+    
     public void vivienda() {
         tipoVivienda.add(new TipoVivienda(1, "Casa"));
         tipoVivienda.add(new TipoVivienda(2, "Departamento"));
@@ -585,10 +467,6 @@ public class Vendedor extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-    }
-    
-    public void mostraDatos(){
-        
     }
 
 }

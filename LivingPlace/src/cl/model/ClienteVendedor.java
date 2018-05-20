@@ -2,27 +2,47 @@ package cl.model;
 
 
 public class ClienteVendedor extends Vendedorr{
-    private int vendedor_fk;
-    private int cliente_fk;
+    private String vendedor;
+    private String RutVendedor;
+    private String cliente;
     private String fecha;
     private String Hora;
     private String accion;
 
-    public ClienteVendedor(int vendedor_fk, int cliente_fk, String fecha, String Hora, String accion) {
-        this.vendedor_fk = vendedor_fk;
-        this.cliente_fk = cliente_fk;
-        this.fecha = fecha;
-        this.Hora = Hora;
-        this.accion = accion;
-    }
-    
-    public ClienteVendedor(String fecha, String Hora, String accion) {
+    public ClienteVendedor(String vendedor, String RutVendedor, String cliente, String fecha, String Hora, String accion) {
+        this.vendedor = vendedor;
+        this.RutVendedor = RutVendedor;
+        this.cliente = cliente;
         this.fecha = fecha;
         this.Hora = Hora;
         this.accion = accion;
     }
 
-    public ClienteVendedor() {
+    ClienteVendedor() {
+    }
+
+    public String getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(String vendedor) {
+        this.vendedor = vendedor;
+    }
+
+    public String getRutVendedor() {
+        return RutVendedor;
+    }
+
+    public void setRutVendedor(String RutVendedor) {
+        this.RutVendedor = RutVendedor;
+    }
+
+    public String getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
     }
 
     public String getFecha() {
@@ -49,23 +69,5 @@ public class ClienteVendedor extends Vendedorr{
         this.accion = accion;
     }
 
-    public int getVendedor_fk() {
-        return vendedor_fk;
-    }
-
-    public void setVendedor_fk(int vendedor_fk) {
-        this.vendedor_fk = vendedor_fk;
-    }
-
-    public int getCliente_fk() {
-        return cliente_fk;
-    }
-
-    public void setCliente_fk(int cliente_fk) {
-        this.cliente_fk = cliente_fk;
-    }
-    
-
-    
     
 }

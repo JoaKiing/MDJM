@@ -30,6 +30,7 @@ public class App extends javax.swing.JFrame {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
         setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
@@ -84,7 +85,7 @@ public class App extends javax.swing.JFrame {
         
         Administrador a = new Administrador();
         String rut = txtRun.getText();
-        setVisible(false);
+        dispose();
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

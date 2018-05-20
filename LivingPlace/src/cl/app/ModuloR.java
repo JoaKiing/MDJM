@@ -16,6 +16,8 @@ public class ModuloR extends javax.swing.JFrame {
      */
     public ModuloR() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**

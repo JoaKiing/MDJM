@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -75,10 +74,53 @@ public class Data {
         con.ejecutar(query);
 
     }
-    public void datosVendedor(DefaultTableModel tabla) throws SQLException {
-        query = "SELECT  * FROM modulo_log;";
+    public List<ClienteVendedor> datosVendedor() throws SQLException {
+        query = "SELECT * FROM modulo_log;";
+        
+        List<ClienteVendedor> lista = new ArrayList<>();
+        
         rs = con.ejecutarSelect(query);
-
+        
+        while (rs.next()) {            
+            ClienteVendedor cv = new ClienteVendedor();
+            
+            cv.setVendedor(rs.getString(1));
+            cv.setRutVendedor(rs.getString(2));
+            cv.setCliente(rs.getString(3));
+            cv.setFecha(rs.getString(4));
+            cv.setHora(rs.getString(5));
+            cv.setAccion(rs.getString(6));
+            
+            lista.add(cv);
+            
+            
+        }
+        return lista;
+    }
+    
+    public List<BuscarVivienda> buscarVivienda() throws SQLException {
+        query = "SELECT * FROM listado_vivienda;";
+        
+        List<BuscarVivienda> mostarViv = new ArrayList<>();
+        
+        rs = con.ejecutarSelect(query);
+        
+        while (rs.next()) {            
+            BuscarVivienda bv = new BuscarVivienda();
+            
+            bv.setRol(rs.getString(1));
+            bv.setDireccion(rs.getString(2));
+            bv.setPieza(rs.getInt(3));
+            bv.setBaño(rs.getInt(4));
+            bv.setTipoVivienda(rs.getString(5));
+            bv.setPrecio(rs.getInt(6));
+            bv.setNuevoUsado(rs.getString(7));
+            
+            mostarViv.add(bv);
+            
+            
+        }
+        return mostarViv;
     }
 
     

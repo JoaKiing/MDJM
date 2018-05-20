@@ -26,6 +26,7 @@ public class Administrador extends javax.swing.JFrame {
     public Administrador() {
         try {
             d = new Data();
+            
         } catch (SQLException ex) {
             Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -204,21 +205,25 @@ public class Administrador extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Estadistica e = new Estadistica();
         e.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         ModuloV mv = new ModuloV();
         mv.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         ModuloR mr = new ModuloR();
         mr.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         ModuloL ml = new ModuloL();
         ml.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

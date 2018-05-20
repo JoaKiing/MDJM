@@ -17,6 +17,11 @@ public class Vendedorr {
     public Vendedorr() {
     }
 
+    public Vendedorr(String rut) {
+        this.rut = rut;
+    }
+    
+
     public Vendedorr(String nombre, String rut) {
         this.nombre = nombre;
         this.rut = rut;
@@ -51,13 +56,6 @@ public class Vendedorr {
 
     public void setRut(String rut) {
         this.rut = rut;
-    }
-
-   
-
-    @Override
-    public String toString() {
-        return "Persona{" + "id=" + id + ", nombre=" + nombre + ", rut=" + rut +'}';
     }
     
 }

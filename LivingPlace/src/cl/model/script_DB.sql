@@ -46,6 +46,9 @@ CREATE TABLE vivienda(
     nuevo_usado BOOLEAN
 ); -- SELECT * FROM vivienda;
 
+INSERT INTO vivienda VALUES(NULL, '17MRK','Santiago, Puerto Mont','4','1','1',300000,1);
+INSERT INTO vivienda VALUES(NULL, '15SRT','Viña Del Mar','6','2','1',500000,2);
+
 CREATE TABLE registro_venta(
     id INT PRIMARY KEY AUTO_INCREMENT,
     vendedor_fk INT REFERENCES persona(id),
@@ -55,13 +58,13 @@ CREATE TABLE registro_venta(
 );
 
 CREATE TABLE vendedorCliente(
-	id INT PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     vendedor_fk INT REFERENCES persona(id),
     cliente_fk INT REFERENCES cliente(id),
     fecha DATE,
     hora TIME,
     accion VARCHAR(10)
-);
+);-- SELECT * FROM vendedorCliente;
 
 INSERT INTO vendedorCliente VALUES(NULL,'1','1','2018/03/08','23:00:18','Vendio');
 
@@ -80,30 +83,20 @@ CREATE TABLE estado_vivienda(
     fk_estado INT REFERENCES estado(id)
 );
 
-CREATE VIEW datosModulo_log  -- SELECT * FROM datosModulo_log;
-AS
-SELECT v.nombre AS 'Vendedor',
-       v.run AS 'Rut Vendedor',
-       vi.direccion AS 'Direccion de vivienda',
-       vi.cantidad_pieza AS 'Cantidad Piezas',
-       vi.cantidad_baño AS 'Cantidad Baños',
-       tv.nombre AS 'Tipo Vivienda',
-       vi.precio AS 'Precio vivienda',
-       vi.nuevo_usado AS 'Nuevo o Usado',
-       cl.nombre AS 'Nombre Cliente',
-       cl.run AS 'Run Cliente',
-       cl.sueldo AS 'Sueldo Cliente'
+CREATE VIEW listado_vivienda AS -- SELECT * FROM listado_vivienda;
+SELECT v.rol AS 'Rol',
+	   v.direccion AS 'Direccion',
+       v.cantidad_pieza AS 'Cantidad Pieza',
+       v.cantidad_baño AS 'Cantidad Baño',
+       tv.nombre AS 'Tipo de vivienda',
+       v.precio AS 'Precio',
+       v.nuevo_usado AS 'Nuevo o Usado'
 FROM
-	   registro_venta ml
-       INNER JOIN vendedor v
-       ON ml.vendedor_fk = v.id
-       INNER JOIN vivienda vi
-       ON ml.vivienda_fk = vi.id
-       INNER JOIN tipo_vivienda tv
-       ON vi.tipo_vivienda_FK = tv.id
-       INNER JOIN cliente cl 
-	   ON ml.cliente_fk = cl.id;
-
+	   tipo_vivienda tv
+       INNER JOIN vivienda v
+       ON tv.id = v.tipo_vivienda_fk;
+       
+       
 CREATE VIEW nombreVivienda AS -- SELECT * FROM nombreVivienda;
 SELECT tv.nombre AS 'Vivienda' 
 FROM vivienda v INNER JOIN tipo_vivienda tv ON tv.id = v.tipo_vivienda_fk;

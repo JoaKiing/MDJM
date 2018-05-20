@@ -15,10 +15,11 @@ public class ModuloV extends javax.swing.JFrame {
     private List<TipoVivienda> tipoVivienda;
     private Data d;
     private int estado;
+    private Administrador ad;
     
     public ModuloV() {
         initComponents();
-        setLocationRelativeTo(null);
+        ad = new Administrador();
         initTipoVivienda();
         try {
             d = new Data();
@@ -27,6 +28,8 @@ public class ModuloV extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
         }
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
     
     @SuppressWarnings("unchecked")
@@ -52,6 +55,7 @@ public class ModuloV extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         cboTipoVivienda = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -96,6 +100,13 @@ public class ModuloV extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Volver");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -122,7 +133,8 @@ public class ModuloV extends javax.swing.JFrame {
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
+                                    .addComponent(jLabel5)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(37, 37, 37)
@@ -173,7 +185,9 @@ public class ModuloV extends javax.swing.JFrame {
                         .addComponent(rbtNueva)
                         .addComponent(rbtUsada)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -235,6 +249,13 @@ public class ModuloV extends javax.swing.JFrame {
         estado = 1;
     }//GEN-LAST:event_rbtNuevaActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        ad.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -287,6 +308,7 @@ public class ModuloV extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btngEstadoVivienda;
     private javax.swing.JComboBox<TipoVivienda> cboTipoVivienda;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

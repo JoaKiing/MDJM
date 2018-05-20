@@ -16,6 +16,8 @@ public class Estadistica extends javax.swing.JFrame {
      */
     public Estadistica() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**

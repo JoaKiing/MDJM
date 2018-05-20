@@ -1,39 +1,46 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package cl.app;
 
-import cl.model.ClienteVendedor;
+import cl.model.BuscarVivienda;
 import cl.model.Data;
-import cl.model.ModuloLog;
+import cl.model.ListadoVivienda;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ModuloL extends javax.swing.JFrame {
-
-    private Data d;
-    private Administrador ad;
-    private List<ClienteVendedor> lista;
-    private ModuloLog modulo;
+/**
+ *
+ * @author Matias
+ */
+public class ListaVivienda extends javax.swing.JFrame {
     
-    public ModuloL() {
+    private Vendedor v;
+    private Data d;
+    private List<BuscarVivienda> buscarVivienda;
+    private ListadoVivienda vivienda;
+    
+    public ListaVivienda() {
         initComponents();
-        ad = new Administrador();
         try {
             d = new Data();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ModuloL.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListaVivienda.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(ModuloL.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListaVivienda.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        try {
-            mostrarDatosVendedor();
-        } catch (SQLException ex) {
-            Logger.getLogger(ModuloL.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
         setLocationRelativeTo(null);
         setResizable(false);
+        
+        try {
+            buscarVivienda();
+        } catch (SQLException ex) {
+            Logger.getLogger(ListaVivienda.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -47,14 +54,16 @@ public class ModuloL extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtbActividad = new javax.swing.JTable();
+        jtbVivienda = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Actividades de vendedor"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED), "Vivienda"));
 
-        jtbActividad.setModel(new javax.swing.table.DefaultTableModel(
+        jtbVivienda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -65,7 +74,7 @@ public class ModuloL extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jtbActividad);
+        jScrollPane1.setViewportView(jtbVivienda);
 
         jButton1.setText("Volver");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -74,26 +83,36 @@ public class ModuloL extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Arrendar");
+
+        jButton3.setText("Vender");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -117,7 +136,8 @@ public class ModuloL extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ad.setVisible(true);
+        v = new Vendedor();
+        v.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -138,36 +158,39 @@ public class ModuloL extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModuloL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaVivienda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModuloL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaVivienda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModuloL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaVivienda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModuloL.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaVivienda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ModuloL().setVisible(true);
+                new ListaVivienda().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtbActividad;
+    private javax.swing.JTable jtbVivienda;
     // End of variables declaration//GEN-END:variables
 
-    private void mostrarDatosVendedor() throws SQLException {
-        lista = d.datosVendedor();
-        modulo = new ModuloLog(lista);
-        jtbActividad.setModel(modulo);
-    }
+    private void buscarVivienda() throws SQLException {
+        buscarVivienda = d.buscarVivienda();
+        vivienda = new ListadoVivienda(buscarVivienda);
+        jtbVivienda.setModel(vivienda);
+        
+        
     
-
+    }
 }
