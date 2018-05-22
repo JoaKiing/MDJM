@@ -11,12 +11,13 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class ModuloV extends javax.swing.JFrame {
-    
+
     private List<TipoVivienda> tipoVivienda;
     private Data d;
     private boolean estado;
     private Administrador ad;
-    
+    Vivienda v;
+
     public ModuloV() {
         initComponents();
         ad = new Administrador();
@@ -31,7 +32,7 @@ public class ModuloV extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -77,19 +78,9 @@ public class ModuloV extends javax.swing.JFrame {
 
         btngEstadoVivienda.add(rbtNueva);
         rbtNueva.setText("Nueva");
-        rbtNueva.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtNuevaActionPerformed(evt);
-            }
-        });
 
         btngEstadoVivienda.add(rbtUsada);
         rbtUsada.setText("Usada");
-        rbtUsada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtUsadaActionPerformed(evt);
-            }
-        });
 
         jLabel5.setText("Estado de vivienda:");
 
@@ -211,51 +202,45 @@ public class ModuloV extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            String rol = txtRol.getText();
-            String direccion = txtDireccion.getText();
-            int cantPieza = Integer.parseInt(txtCantPiezas.getText());
-            int cantBaño = Integer.parseInt(txtCantBaños.getText());
-            int tipoVivienda = cboTipoVivienda.getSelectedIndex();
-            int precio = Integer.parseInt(txtPrecio.getText());
-            
-            if (tipoVivienda > -1) {
-                tipoVivienda++;
-                Vivienda vi = new Vivienda(rol, direccion, cantPieza, cantBaño, tipoVivienda, precio, estado);
-                int idVivienda = d.registrarVivienda(vi);
-                
-                d.estadoVivienda(idVivienda);
-                
-                txtRol.setText("");
-                txtDireccion.setText("");
-                txtCantPiezas.setText("");
-                txtCantBaños.setText("");
-                cboTipoVivienda.setSelectedIndex(0);
-                txtPrecio.setText("");
-                rbtNueva.setSelected(true);
-                tipoVivienda--;
-            }
-            
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "ERROR " + ex.getMessage());
+
+        v = new Vivienda();
+        v.setRol(txtRol.getText());
+        v.setDireccion(txtDireccion.getText());
+        v.setCantPiezas(Integer.parseInt(txtCantPiezas.getText()));
+        v.setCantBaños(Integer.parseInt(txtCantBaños.getText()));
+        v.setTipoVivienda(cboTipoVivienda.getSelectedIndex());
+        v.setPrecio(Integer.parseInt(txtPrecio.getText()));
+        if (rbtNueva.isSelected()) {
+            estado = true;
+            v.setEstado(estado);
+        } else {
+            estado = false;
+            v.setEstado(estado);
         }
-        
+
+        int idVivienda;
+        try {
+            idVivienda = d.registrarVivienda(v);
+            d.estadoVivienda(idVivienda);
+        } catch (SQLException ex) {
+            Logger.getLogger(ModuloV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        txtRol.setText("");
+        txtDireccion.setText("");
+        txtCantPiezas.setText("");
+        txtCantBaños.setText("");
+        cboTipoVivienda.setSelectedIndex(0);
+        txtPrecio.setText("");
+        rbtNueva.setSelected(true);
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void rbtUsadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtUsadaActionPerformed
-        estado = false;
-    }//GEN-LAST:event_rbtUsadaActionPerformed
-
-    private void rbtNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtNuevaActionPerformed
-        estado = true;
-    }//GEN-LAST:event_rbtNuevaActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
         ad.setVisible(true);
         dispose();
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -292,15 +277,15 @@ public class ModuloV extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void initTipoVivienda() {
         tipoVivienda = new ArrayList<>();
-        
+
         tipoVivienda.add(new TipoVivienda(1, "Casa"));
         tipoVivienda.add(new TipoVivienda(2, "Departamento"));
-        
+
         cboTipoVivienda.removeAllItems();
-        
+
         for (TipoVivienda vivienda : tipoVivienda) {
             cboTipoVivienda.addItem(vivienda);
         }

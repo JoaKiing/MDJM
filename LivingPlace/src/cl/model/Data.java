@@ -174,7 +174,7 @@ public class Data {
     }
 
     public int registrarVivienda(Vivienda nueva) throws SQLException {
-        query = "INSERT INTO vivienda VALUES(NULL, '" + nueva.getRol() + "', '" + nueva.getDireccion() + "', '" + nueva.getCantPiezas() + "','" + nueva.getCantBaños() + "','" + nueva.getTipoVivienda() + "','" + nueva.getPrecio() + "','" + nueva.getEstado() + "');";
+        query = "INSERT INTO vivienda VALUES(NULL, '" + nueva.getRol() + "', '" + nueva.getDireccion() + "', '" + nueva.getCantPiezas() + "','" + nueva.getCantBaños() + "','" + nueva.getTipoVivienda() + "','" + nueva.getPrecio() + "'," + nueva.getEstado() + ");";
         con.ejecutar(query);
 
         return ultimaVivienda();
@@ -185,7 +185,7 @@ public class Data {
         int id = 0;
 
         query = "SELECT MAX(id) from vivienda";
-        con.ejecutarSelect(query);
+        rs = con.ejecutarSelect(query);
 
         if (rs.next()) {
             id = rs.getInt(1);
@@ -195,8 +195,9 @@ public class Data {
 
     }
 
-    public void estadoVivienda(int id) {
+    public void estadoVivienda(int id) throws SQLException {
         query = "INSERT INTO estado_vivienda VALUES(NULL," + id + ",3);";
+        con.ejecutar(query);
     }
 
     public List<ClienteVendedor> datosVendedor() throws SQLException {

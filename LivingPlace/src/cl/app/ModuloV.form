@@ -226,9 +226,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Nueva"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtNuevaActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtUsada">
           <Properties>
@@ -237,9 +234,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Usada"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtUsadaActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
