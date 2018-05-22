@@ -117,3 +117,44 @@ FROM
 
 
 SELECT TIME(now());
+
+-- VISTA QUE RESCATA LOS DATOS DE LAS VIVIENDAS DISPONIBLES (USADA EN VENDEDOR)
+CREATE VIEW info_vivienda_disponibles AS #DROP VIEW info_vivienda
+	SELECT vivienda.id, vivienda.rol, vivienda.direccion, vivienda.cantidad_pieza, vivienda.cantidad_baño, vivienda.tipo_vivienda_FK, vivienda.precio, vivienda.nuevo_usado
+    FROM vivienda, estado, estado_vivienda
+    WHERE (vivienda.id = estado_vivienda.fk_vivienda AND estado.id = estado_vivienda.fk_estado) AND estado.id = 3
+       
+      
+-- VISTA QUE RESCATA LAS VIVIENDAS VENDIDAS
+CREATE VIEW info_Viviendas_vendidas AS -- DROP VIEW info_Viviendas_vendidas
+	SELECT vivienda.id, vivienda.rol, vivienda.direccion, vivienda.cantidad_pieza, vivienda.cantidad_baño, tipo_vivienda_FK, vivienda.precio, vivienda.nuevo_usado,
+    vendedor.nombre AS 'Nombre vendedor', vendedor.run  AS 'run vendedor', cliente.nombre AS 'Nombre cliente', cliente.run AS 'run cliente'
+    FROM vivienda, estado_vivienda, estado, registro_venta, vendedor, cliente
+    WHERE (vivienda.id = estado_vivienda.fk_vivienda AND estado.id = estado_vivienda.fk_estado) 
+    AND (registro_venta.vendedor_fk = vendedor.id) 
+    AND (registro_venta.cliente_fk = cliente.id AND registro_venta.vivienda_fk = vivienda.id) AND  estado.id = 1 
+
+-- VISTA QUE RESCATA LAS VIVIENDAS ARRENDADAS
+CREATE VIEW info_Viviendas_arrendadas AS -- DROP VIEW info_Viviendas_arrendadas
+	SELECT vivienda.id, vivienda.rol, vivienda.direccion, vivienda.cantidad_pieza, vivienda.cantidad_baño, tipo_vivienda_FK, vivienda.precio, vivienda.nuevo_usado,
+    vendedor.nombre AS 'Nombre vendedor', vendedor.run  AS 'run vendedor', cliente.nombre AS 'Nombre cliente', cliente.run AS 'run cliente'
+    FROM vivienda, estado_vivienda, estado, registro_venta, vendedor, cliente
+    WHERE (vivienda.id = estado_vivienda.fk_vivienda AND estado.id = estado_vivienda.fk_estado) 
+    AND (registro_venta.vendedor_fk = vendedor.id) 
+    AND (registro_venta.cliente_fk = cliente.id AND registro_venta.vivienda_fk = vivienda.id) AND  estado.id = 2
+    
+    -- VISTA QUE RESCATA LAS VIVIENDAS USADAS
+CREATE VIEW info_viviendas_usadas AS -- DROP VIEW info_viviendas_usadas
+	SELECT vivienda.rol, vivienda.direccion, vivienda.cantidad_pieza, vivienda.cantidad_baño, vivienda.tipo_vivienda_FK, vivienda.precio, vivienda.nuevo_usado
+    FROM vivienda
+    WHERE vivienda.nuevo_usado = false
+    
+-- VISTA QUE RESCATA LAS VIVIENDAS VEDIDAS Y ARRENDADAS
+CREATE VIEW info_viviendas_vendidas_arrendadas AS -- DROP VIEW info_viviendas_vendidas_arrendadas
+	SELECT vivienda.id, vivienda.rol, vivienda.direccion, vivienda.cantidad_pieza, vivienda.cantidad_baño, vivienda.tipo_vivienda_FK, vivienda.precio, vivienda.nuevo_usado,
+    vendedor.nombre AS 'Nombre vendedor', vendedor.run  AS 'run vendedor', cliente.nombre AS 'Nombre cliente', cliente.run AS 'run cliente'
+    FROM vivienda, estado_vivienda, estado, registro_venta, vendedor, cliente
+    WHERE (vivienda.id = estado_vivienda.fk_vivienda AND estado.id = estado_vivienda.fk_estado) 
+    AND (registro_venta.vendedor_fk = vendedor.id) 
+    AND (registro_venta.cliente_fk = cliente.id AND registro_venta.vivienda_fk = vivienda.id) AND  estado.id BETWEEN 1 AND 2
+
