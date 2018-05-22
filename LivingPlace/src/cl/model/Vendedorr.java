@@ -10,7 +10,7 @@ package cl.model;
  * @author GAMERS
  */
 public class Vendedorr {
-     private int id;
+    private int id;
     private String nombre;
     private String rut;
 

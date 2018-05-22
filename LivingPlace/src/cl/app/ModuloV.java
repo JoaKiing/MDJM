@@ -14,7 +14,7 @@ public class ModuloV extends javax.swing.JFrame {
     
     private List<TipoVivienda> tipoVivienda;
     private Data d;
-    private int estado;
+    private boolean estado;
     private Administrador ad;
     
     public ModuloV() {
@@ -222,7 +222,9 @@ public class ModuloV extends javax.swing.JFrame {
             if (tipoVivienda > -1) {
                 tipoVivienda++;
                 Vivienda vi = new Vivienda(rol, direccion, cantPieza, cantBaño, tipoVivienda, precio, estado);
-                d.registrarVivienda(vi);
+                int idVivienda = d.registrarVivienda(vi);
+                
+                d.estadoVivienda(idVivienda);
                 
                 txtRol.setText("");
                 txtDireccion.setText("");
@@ -242,11 +244,11 @@ public class ModuloV extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void rbtUsadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtUsadaActionPerformed
-        estado = 2;
+        estado = false;
     }//GEN-LAST:event_rbtUsadaActionPerformed
 
     private void rbtNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtNuevaActionPerformed
-        estado = 1;
+        estado = true;
     }//GEN-LAST:event_rbtNuevaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

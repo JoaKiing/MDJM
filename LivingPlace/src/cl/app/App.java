@@ -25,7 +25,7 @@ public class App extends javax.swing.JFrame {
         initComponents();
         try {
             d = new Data();
-            
+
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -81,12 +81,32 @@ public class App extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro?");
-        
-        Administrador a = new Administrador();
         String rut = txtRun.getText();
-        dispose();
+
+        try {
+            if (rut.equals("11-1")) {
+                Administrador a = new Administrador();
+                setVisible(false);
+                
+                a.setVisible(true);
+            }else{
+                if (rut.equals(d.getVendedor(rut).getRut())) {
+                    Vendedor v = new Vendedor();
+                    setVisible(false);
+                    
+                    v.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(this, "Rut Ingresado No Existe.");
+                    setVisible(true);
+                    
+                    txtRun.setText("");
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRunActionPerformed

@@ -13,9 +13,9 @@ public class Vivienda {
     private int cantBaños;
     private int tipoVivienda;
     private int precio;
-    private int estado;
+    private boolean usado_nuevo;
 
-    public Vivienda(String rol, String direccion, int cantPiezas, int cantBaños, int tipoVivienda, int precio, int estado) {
+    public Vivienda(String rol, String direccion, int cantPiezas, int cantBaños, int tipoVivienda, int precio, boolean estado) {
 
         this.rol = rol;
         this.direccion = direccion;
@@ -23,7 +23,7 @@ public class Vivienda {
         this.cantBaños = cantBaños;
         this.tipoVivienda = tipoVivienda;
         this.precio = precio;
-        this.estado = estado;
+        this.usado_nuevo = estado;
     }
 
     public Vivienda() {
@@ -85,12 +85,12 @@ public class Vivienda {
         this.precio = precio;
     }
 
-    public int getEstado() {
-        return estado;
+    public boolean getEstado() {
+        return usado_nuevo;
     }
 
-    public void setEstado(int estado) {
-        this.estado = estado;
+    public void setEstado(boolean estado) {
+        this.usado_nuevo = estado;
     }
 
 }
