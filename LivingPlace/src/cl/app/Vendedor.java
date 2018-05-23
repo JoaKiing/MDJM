@@ -54,7 +54,7 @@ public class Vendedor extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         
-
+        cargarTablaCliente(d.getListadoClientes());
         cargarTabla(d.getListadoVivienda());
     }
 
@@ -69,6 +69,7 @@ public class Vendedor extends javax.swing.JFrame {
 
         frameCambiarApariencia = new javax.swing.JFrame();
         btgOrden = new javax.swing.ButtonGroup();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jpjVentaArriendo = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
@@ -78,7 +79,7 @@ public class Vendedor extends javax.swing.JFrame {
         txtRutCliente4 = new javax.swing.JTextField();
         txtSueldoCliente4 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaCliente = new javax.swing.JTable();
         btnRegistrarCliente = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -123,7 +124,7 @@ public class Vendedor extends javax.swing.JFrame {
 
         jLabel15.setText("Sueldo: ");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -134,9 +135,14 @@ public class Vendedor extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaCliente);
 
         btnRegistrarCliente.setText("Registrar");
+        btnRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarClienteActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Clientes Registrados: ");
 
@@ -234,9 +240,21 @@ public class Vendedor extends javax.swing.JFrame {
 
         jLabel16.setText("Vivienda: ");
 
+        buttonGroup1.add(rbVivUsada);
         rbVivUsada.setText("Usada");
+        rbVivUsada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbVivUsadaActionPerformed(evt);
+            }
+        });
 
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Nueva");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Estado: ");
 
@@ -420,19 +438,13 @@ public class Vendedor extends javax.swing.JFrame {
         viv = new Vivienda();
         c = new Cliente();
 
-        //RESCATO DATOS DEL CLIENTE Y REGISTRO CLIENTE
-        String rutCliente = txtRutCliente4.getText();
-        c.setNombre(txtNombreCliente4.getText());
-        c.setRun(rutCliente);
-        c.setSueldo(Integer.parseInt(txtSueldoCliente4.getText()));
-
         try {
-            d.registrarCliente(c);
+            //RESCATO DATOS DEL CLIENTE Y REGISTRO CLIENTE
+            c = d.getCliente(txtRutCliente4.getText());
+            //RESCATO DATOS DEL CLIENTE Y REGISTRO CLIENTE
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "ERROR AL REGISTRAR CLIENTE " + ex);
+            Logger.getLogger(Vendedor.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        //RESCATO DATOS DEL CLIENTE Y REGISTRO CLIENTE
 
         //RESCATO DATOS DE LA VIVIENDA
         int filaSel = TablaViviendas.getSelectedRow();
@@ -462,7 +474,7 @@ public class Vendedor extends javax.swing.JFrame {
         //RESCATO DATOS DEL VENDEDOR
 
         try {
-            d.registroVenta(v.getId(), viv.getId(), d.getCliente(rutCliente).getId());
+            d.registroVenta(v.getId(), viv.getId(), d.getCliente(txtRutCliente4.getText()).getId());
             
             cargarTabla(d.getListadoVivienda());
         } catch (SQLException ex) {
@@ -471,6 +483,7 @@ public class Vendedor extends javax.swing.JFrame {
         }
         
         limpiarCliente();
+        btnRegistrarCliente.setEnabled(true);
         
         JOptionPane.showMessageDialog(this, "VIVIENDA VENDIDA");
 
@@ -481,18 +494,15 @@ public class Vendedor extends javax.swing.JFrame {
         viv = new Vivienda();
         c = new Cliente();
 
-        //RESCATO DATOS DEL CLIENTE Y REGISTRO CLIENTE
-        String rutCliente = txtRutCliente4.getText();
-        c.setNombre(txtNombreCliente4.getText());
-        c.setRun(rutCliente);
-        c.setSueldo(Integer.parseInt(txtSueldoCliente4.getText()));
-
+        
         try {
-            d.registrarCliente(c);
+            //RESCATO DATOS DEL CLIENTE Y REGISTRO CLIENTE
+            c = d.getCliente(txtRutCliente4.getText());
+            //RESCATO DATOS DEL CLIENTE Y REGISTRO CLIENTE
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "ERROR AL REGISTRAR CLIENTE " + ex);
+            Logger.getLogger(Vendedor.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //RESCATO DATOS DEL CLIENTE Y REGISTRO CLIENTE
+        
         
         //RESCATO DATOS DE LA VIVIENDA
         int filaSel = TablaViviendas.getSelectedRow();
@@ -522,7 +532,7 @@ public class Vendedor extends javax.swing.JFrame {
         //RESCATO DATOS DEL VENDEDOR
 
         try {
-            d.registroArriendo(v.getId(), viv.getId(), d.getCliente(rutCliente).getId());
+            d.registroArriendo(v.getId(), viv.getId(), d.getCliente(txtRutCliente4.getText()).getId());
             
             cargarTabla(d.getListadoVivienda());
         } catch (SQLException ex) {
@@ -531,6 +541,7 @@ public class Vendedor extends javax.swing.JFrame {
         }
         
         limpiarCliente();
+        btnRegistrarCliente.setEnabled(true);
         JOptionPane.showMessageDialog(this, "VIVIENDA ARRENDADA");
     }//GEN-LAST:event_btnArrendarActionPerformed
 
@@ -564,6 +575,56 @@ public class Vendedor extends javax.swing.JFrame {
     private void rbDescendente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDescendente1ActionPerformed
         orden = "Descendete";
     }//GEN-LAST:event_rbDescendente1ActionPerformed
+
+    private void rbVivUsadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbVivUsadaActionPerformed
+        boolean estado =  false;
+        
+        try {
+            cargarTabla(d.buscarViviendaXEstado(estado));
+        } catch (SQLException ex) {
+            Logger.getLogger(Vendedor.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+    }//GEN-LAST:event_rbVivUsadaActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        boolean estado =  true;
+        
+        try {
+            cargarTabla(d.buscarViviendaXEstado(estado));
+        } catch (SQLException ex) {
+            Logger.getLogger(Vendedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void btnRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarClienteActionPerformed
+        c = new Cliente();
+        
+        try {
+            if (d.existeRutCliente(txtRutCliente4.getText()) == true) {
+                c = d.getCliente(txtRutCliente4.getText());
+                
+                txtNombreCliente4.setText(c.getNombre());
+                txtRutCliente4.setText(c.getRun());
+                txtSueldoCliente4.setText(String.valueOf(c.getSueldo()));
+                
+                btnRegistrarCliente.setEnabled(false);
+            }else{
+                c.setNombre(txtNombreCliente4.getText());
+                c.setRun(txtRutCliente4.getText());
+                c.setSueldo(Integer.parseInt(txtSueldoCliente4.getText()));
+                
+                d.registrarCliente(c);
+                
+                cargarTablaCliente(d.getListadoClientes());
+                
+                txtNombreCliente4.setText("");
+                txtRutCliente4.setText("");
+                txtSueldoCliente4.setText("");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Vendedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnRegistrarClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -616,6 +677,7 @@ public class Vendedor extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistrarCliente;
     private javax.swing.JButton btnVenderVivienda;
     private javax.swing.JButton btnVolver;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<TipoVivienda> cboTipoVivienda1;
     private javax.swing.JFrame frameCambiarApariencia;
     private javax.swing.JLabel jLabel1;
@@ -629,11 +691,11 @@ public class Vendedor extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel jpjVentaArriendo;
     private javax.swing.JRadioButton rbAscendente1;
     private javax.swing.JRadioButton rbDescendente1;
     private javax.swing.JRadioButton rbVivUsada;
+    private javax.swing.JTable tablaCliente;
     private javax.swing.JTextField txtNombreCliente4;
     private javax.swing.JTextField txtRutCliente4;
     private javax.swing.JTextField txtSueldoCliente4;
@@ -685,6 +747,24 @@ public class Vendedor extends javax.swing.JFrame {
         }
 
         TablaViviendas.setModel(model);
+    }
+    
+    private void cargarTablaCliente(List<Cliente> lista){
+        String[] titulos = {"Nombre", "Rut", "Sueldo"};
+        Object[] fila = new Object[titulos.length];
+
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(titulos);
+        
+        for (Cliente c : lista) {
+            fila[0] = c.getNombre();
+            fila[1] = c.getRun();
+            fila[2] = c.getSueldo();
+            
+            model.addRow(fila);
+        }
+        
+        tablaCliente.setModel(model);
     }
 
 
