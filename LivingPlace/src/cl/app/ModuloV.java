@@ -208,7 +208,14 @@ public class ModuloV extends javax.swing.JFrame {
         v.setDireccion(txtDireccion.getText());
         v.setCantPiezas(Integer.parseInt(txtCantPiezas.getText()));
         v.setCantBaños(Integer.parseInt(txtCantBaños.getText()));
-        v.setTipoVivienda(cboTipoVivienda.getSelectedIndex());
+        
+        if (cboTipoVivienda.getSelectedIndex() == 0) {
+            v.setTipoVivienda(1);
+        }else{
+            v.setTipoVivienda(2);
+        }
+        
+        
         v.setPrecio(Integer.parseInt(txtPrecio.getText()));
         if (rbtNueva.isSelected()) {
             estado = true;

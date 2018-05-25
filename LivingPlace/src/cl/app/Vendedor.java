@@ -414,7 +414,6 @@ public class Vendedor extends javax.swing.JFrame {
 
     private void btnCambiarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarBotonActionPerformed
         Color c = JColorChooser.showDialog(rootPane, "Elija un color", this.getBackground());
-
         btnBuscarVivienda1.setBackground(c);
         btnCambiarBoton.setBackground(c);
         btnCambiarL.setBackground(c);
