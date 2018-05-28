@@ -16,6 +16,8 @@ import javax.swing.JOptionPane;
  *
  * @author JOAQUIN CABELLO
  */
+
+
 public class App extends javax.swing.JFrame {
 
     private Data d;
