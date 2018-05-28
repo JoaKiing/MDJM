@@ -137,6 +137,7 @@ public class Vendedor extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablaCliente);
 
+        btnRegistrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/image/registrar.png"))); // NOI18N
         btnRegistrarCliente.setText("Registrar");
         btnRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,7 +190,7 @@ public class Vendedor extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         TablaViviendas.setModel(new javax.swing.table.DefaultTableModel(
@@ -229,6 +230,7 @@ public class Vendedor extends javax.swing.JFrame {
             }
         });
 
+        btnBuscarVivienda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/image/seach.png"))); // NOI18N
         btnBuscarVivienda1.setText("Buscar");
         btnBuscarVivienda1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -308,6 +310,7 @@ public class Vendedor extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnCambiarBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/image/color.png"))); // NOI18N
         btnCambiarBoton.setText("Cambiar Color Boton");
         btnCambiarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -315,6 +318,7 @@ public class Vendedor extends javax.swing.JFrame {
             }
         });
 
+        btnCambiarL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/image/color.png"))); // NOI18N
         btnCambiarL.setText("Cambiar Letra Boton");
         btnCambiarL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -322,6 +326,7 @@ public class Vendedor extends javax.swing.JFrame {
             }
         });
 
+        btnVenderVivienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/image/add.png"))); // NOI18N
         btnVenderVivienda.setText("Vender");
         btnVenderVivienda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,6 +334,7 @@ public class Vendedor extends javax.swing.JFrame {
             }
         });
 
+        btnArrendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/image/rent.png"))); // NOI18N
         btnArrendar.setText("Arrendar");
         btnArrendar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -352,9 +358,9 @@ public class Vendedor extends javax.swing.JFrame {
                         .addGroup(jpjVentaArriendoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2)
                             .addGroup(jpjVentaArriendoLayout.createSequentialGroup()
-                                .addComponent(btnCambiarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnCambiarL, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnCambiarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCambiarL, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnVenderVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -366,19 +372,21 @@ public class Vendedor extends javax.swing.JFrame {
             .addGroup(jpjVentaArriendoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpjVentaArriendoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(RbVivNueva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(RbVivNueva, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jpjVentaArriendoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCambiarBoton)
-                    .addComponent(btnCambiarL)
-                    .addComponent(btnArrendar)
-                    .addComponent(btnVenderVivienda))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpjVentaArriendoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpjVentaArriendoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnCambiarBoton)
+                        .addComponent(btnCambiarL)
+                        .addComponent(btnArrendar))
+                    .addComponent(btnVenderVivienda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/image/back.png"))); // NOI18N
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

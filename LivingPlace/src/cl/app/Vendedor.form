@@ -95,9 +95,9 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jScrollPane2" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="btnCambiarBoton" min="-2" pref="147" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="btnCambiarL" min="-2" pref="142" max="-2" attributes="0"/>
+                                  <Component id="btnCambiarBoton" min="-2" pref="173" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="btnCambiarL" min="-2" pref="163" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btnVenderVivienda" min="-2" pref="130" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -115,19 +115,21 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="RbVivNueva" max="32767" attributes="0"/>
+                      <Component id="RbVivNueva" pref="304" max="32767" attributes="0"/>
                       <Component id="jPanel6" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" pref="197" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnCambiarBoton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnCambiarL" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnArrendar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnVenderVivienda" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnCambiarBoton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCambiarL" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnArrendar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="btnVenderVivienda" alignment="1" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -193,7 +195,7 @@
                       <Component id="jLabel1" min="-2" pref="18" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="105" max="-2" attributes="0"/>
-                      <EmptySpace pref="15" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -243,6 +245,9 @@
             </Container>
             <Component class="javax.swing.JButton" name="btnRegistrarCliente">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/cl/image/registrar.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Registrar"/>
               </Properties>
               <Events>
@@ -380,6 +385,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnBuscarVivienda1">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/cl/image/seach.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Buscar"/>
               </Properties>
               <Events>
@@ -437,6 +445,9 @@
         </Container>
         <Component class="javax.swing.JButton" name="btnCambiarBoton">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/cl/image/color.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Cambiar Color Boton"/>
           </Properties>
           <Events>
@@ -445,6 +456,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnCambiarL">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/cl/image/color.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Cambiar Letra Boton"/>
           </Properties>
           <Events>
@@ -453,6 +467,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnVenderVivienda">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/cl/image/add.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Vender"/>
           </Properties>
           <Events>
@@ -461,6 +478,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnArrendar">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/cl/image/rent.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Arrendar"/>
           </Properties>
           <Events>
@@ -471,6 +491,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="btnVolver">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/cl/image/back.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Volver"/>
       </Properties>
       <Events>

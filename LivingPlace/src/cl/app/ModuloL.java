@@ -67,6 +67,7 @@ public class ModuloL extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jtbActividad);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/image/back.png"))); // NOI18N
         jButton1.setText("Volver");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

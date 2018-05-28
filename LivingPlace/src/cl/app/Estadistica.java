@@ -130,6 +130,7 @@ public class Estadistica extends javax.swing.JFrame {
 
         jLabel1.setText("Top: ");
 
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/image/back.png"))); // NOI18N
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

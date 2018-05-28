@@ -65,6 +65,7 @@ public class App extends javax.swing.JFrame {
         });
         getContentPane().add(txtRun, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 200, 30));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/image/Login.png"))); // NOI18N
         jButton1.setText("Iniciar Sesion");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
