@@ -22,6 +22,8 @@ public class Data {
     private List<Estadisticas> listaEstadisticas;
     private List<Cliente> listaCliente;
     private Cliente cliente;
+    private TopVendedores dVendedores;
+    private List<TopVendedores> listaTopVendedores;
 
     public Data() throws ClassNotFoundException, SQLException {
         con = new Conexion("localhost", "living_place", "root", "");
@@ -536,5 +538,40 @@ public class Data {
         
         return listaViviendas;
     }
+    
+    public int getCantidadViviendas(String fecha1,String fecha2, int tipo) throws SQLException{
+        int cantidad = 0;
+        query = "SELECT COUNT(*) FROM registro_venta,vivienda WHERE fecha between '"+fecha1+"' AND '"+fecha2+"' "
+                + "AND (vivienda.id = registro_venta.vivienda_fk AND vivienda.tipo_vivienda_FK = "+tipo+");";
+        
+        rs = con.ejecutarSelect(query);
+        
+        if (rs.next()) {
+            cantidad = rs.getInt(1);
+        }
+        
+        return cantidad;
+    }
+    
+    public List<TopVendedores> getTopVendedores(String fecha1,String fecha2,int cantidad) throws SQLException{
+        listaTopVendedores = new ArrayList<>();
+        
+        query = "SELECT vendedor.nombre, vendedor.run, COUNT(*) FROM registro_venta, vendedor WHERE fecha between '"+fecha1+"' AND '"+fecha2+"' AND(registro_venta.vendedor_fk = vendedor.id) LIMIT "+cantidad+"";
+        
+        rs = con.ejecutarSelect(query);
+        
+        while (rs.next()) {            
+            dVendedores = new TopVendedores();
+            
+            dVendedores.setNombre(rs.getString(1));
+            dVendedores.setRut(rs.getString(2));
+            dVendedores.setCantidadVentas(rs.getInt(3));
+            
+            listaTopVendedores.add(dVendedores);
+        }
+        return listaTopVendedores;
+        
+    }
+    
 
 }

@@ -3,7 +3,9 @@ package cl.app;
 
 import cl.model.Data;
 import cl.model.Estadisticas;
+import cl.model.TopVendedores;
 import cl.model.Vivienda;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -23,6 +25,8 @@ public class Estadistica extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         
+        cargarFechas();
+        
         d = new Data();
         
         cargarEstadisticas(d.getListaViviendas());
@@ -33,6 +37,7 @@ public class Estadistica extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaEstadisticas2 = new javax.swing.JTable();
@@ -40,9 +45,17 @@ public class Estadistica extends javax.swing.JFrame {
         rbUsadas = new javax.swing.JRadioButton();
         rbVArrendadas = new javax.swing.JRadioButton();
         rbVVendidas = new javax.swing.JRadioButton();
-        txtTop = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         btnVolver = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        cboMes = new javax.swing.JComboBox<>();
+        cboAño = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        rbCasas = new javax.swing.JRadioButton();
+        RbDppto = new javax.swing.JRadioButton();
+        btnCantidades = new javax.swing.JButton();
+        btnTop = new javax.swing.JButton();
+        txtLimite = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,8 +141,6 @@ public class Estadistica extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel1.setText("Top: ");
-
         btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/image/back.png"))); // NOI18N
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -137,6 +148,82 @@ public class Estadistica extends javax.swing.JFrame {
                 btnVolverActionPerformed(evt);
             }
         });
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cantidad De Ventas"));
+
+        jLabel2.setText("Mes: ");
+
+        jLabel3.setText("Año:");
+
+        buttonGroup2.add(rbCasas);
+        rbCasas.setText("Casas");
+
+        buttonGroup2.add(RbDppto);
+        RbDppto.setText("Departamentos");
+
+        btnCantidades.setText("Buscar");
+        btnCantidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCantidadesActionPerformed(evt);
+            }
+        });
+
+        btnTop.setText("Top");
+        btnTop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTopActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtLimite)
+                    .addComponent(cboAño, 0, 101, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnTop)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cboMes, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rbCasas)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(RbDppto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCantidades, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RbDppto)
+                    .addComponent(btnCantidades))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbCasas)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cboAño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(cboMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTop)
+                    .addComponent(txtLimite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -148,24 +235,20 @@ public class Estadistica extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTop, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnVolver)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnVolver)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVolver, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -203,6 +286,164 @@ public class Estadistica extends javax.swing.JFrame {
         
         dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnCantidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCantidadesActionPerformed
+        int cantidad;
+        try {
+            if (rbCasas.isSelected()) {
+                switch (cboMes.getSelectedIndex()) {
+                    case 0:
+                        cantidad = d.getCantidadViviendas("2018-01-01", "2018-01-30", 1);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 1:
+                        cantidad = d.getCantidadViviendas("2018-02-01", "2018-02-30", 1);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 2:
+                        cantidad = d.getCantidadViviendas("2018-03-01", "2018-03-30", 1);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 3:
+                        cantidad = d.getCantidadViviendas("2018-04-01", "2018-04-30", 1);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 4:
+                        cantidad = d.getCantidadViviendas("2018-05-01", "2018-05-30", 1);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 5:
+                        cantidad = d.getCantidadViviendas("2018-06-01", "2018-06-30", 1);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 6:
+                        cantidad = d.getCantidadViviendas("2018-07-01", "2018-07-30", 1);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 7:
+                        cantidad = d.getCantidadViviendas("2018-08-01", "2018-08-30", 1);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 8:
+                        cantidad = d.getCantidadViviendas("2018-09-01", "2018-09-30", 1);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 9:
+                        cantidad = d.getCantidadViviendas("2018-10-01", "2018-10-30", 1);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 10:
+                        cantidad = d.getCantidadViviendas("2018-11-01", "2018-11-30", 1);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 11:
+                        cantidad = d.getCantidadViviendas("2018-12-01", "2018-12-30", 1);
+                        cargarCantidad(cantidad);
+                        break;
+                }
+            }else{
+                if (RbDppto.isSelected()) {
+                    switch (cboMes.getSelectedIndex()) {
+                    case 0:
+                        cantidad = d.getCantidadViviendas("2018-01-01", "2018-01-30", 2);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 1:
+                        cantidad = d.getCantidadViviendas("2018-02-01", "2018-02-30", 2);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 2:
+                        cantidad = d.getCantidadViviendas("2018-03-01", "2018-03-30", 2);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 3:
+                        cantidad = d.getCantidadViviendas("2018-04-01", "2018-04-30", 2);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 4:
+                        cantidad = d.getCantidadViviendas("2018-05-01", "2018-05-30", 2);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 5:
+                        cantidad = d.getCantidadViviendas("2018-06-01", "2018-06-30", 2);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 6:
+                        cantidad = d.getCantidadViviendas("2018-07-01", "2018-07-30", 2);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 7:
+                        cantidad = d.getCantidadViviendas("2018-08-01", "2018-08-30", 2);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 8:
+                        cantidad = d.getCantidadViviendas("2018-09-01", "2018-09-30", 2);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 9:
+                        cantidad = d.getCantidadViviendas("2018-10-01", "2018-10-30", 2);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 10:
+                        cantidad = d.getCantidadViviendas("2018-11-01", "2018-11-30", 2);
+                        cargarCantidad(cantidad);
+                        break;
+                    case 11:
+                        cantidad = d.getCantidadViviendas("2018-12-01", "2018-12-30", 2);
+                        cargarCantidad(cantidad);
+                        break;
+                }
+            }
+            }
+        } catch (SQLException ex) {
+        }
+    }//GEN-LAST:event_btnCantidadesActionPerformed
+
+    private void btnTopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTopActionPerformed
+        int limite = Integer.parseInt(txtLimite.getText());
+        
+        try {
+            switch (cboMes.getSelectedIndex()) {
+                case 0:
+                    cargarTop(d.getTopVendedores("2018-01-01", "2018-01-30", limite));
+                    break;
+                case 1:
+                    cargarTop(d.getTopVendedores("2018-02-01", "2018-02-30", limite));
+                    break;
+                case 2:
+                    cargarTop(d.getTopVendedores("2018-03-01", "2018-03-30", limite));
+                    break;
+                case 3:
+                    cargarTop(d.getTopVendedores("2018-04-01", "2018-04-30", limite));
+                    break;
+                case 4:
+                    cargarTop(d.getTopVendedores("2018-05-01", "2018-05-30", limite));
+                    break;
+                case 5:
+                    cargarTop(d.getTopVendedores("2018-06-01", "2018-06-30", limite));
+                    break;
+                case 6:
+                    cargarTop(d.getTopVendedores("2018-07-01", "2018-07-30", limite));
+                    break;
+                case 7:
+                    cargarTop(d.getTopVendedores("2018-08-01", "2018-08-30", limite));
+                    break;
+                case 8:
+                    cargarTop(d.getTopVendedores("2018-09-01", "2018-09-30", limite));
+                    break;
+                case 9:
+                    cargarTop(d.getTopVendedores("2018-10-01", "2018-10-30", limite));
+                    break;
+                case 10:
+                    cargarTop(d.getTopVendedores("2018-11-01", "2018-11-30", limite));
+                    break;
+                case 11:
+                    cargarTop(d.getTopVendedores("2018-12-01", "2018-12-30", limite));
+                    break;
+            }
+        } catch (SQLException ex) {
+        }
+    }//GEN-LAST:event_btnTopActionPerformed
 
     /**
      * @param args the command line arguments
@@ -312,18 +553,76 @@ public class Estadistica extends javax.swing.JFrame {
 
         tablaEstadisticas2.setModel(model);
     }
+    
+    private void cargarFechas(){
+        cboMes.addItem("Enero");
+        cboMes.addItem("Febrero");
+        cboMes.addItem("Marzo");
+        cboMes.addItem("Abril");
+        cboMes.addItem("Mayo");
+        cboMes.addItem("Junio");
+        cboMes.addItem("Julio");
+        cboMes.addItem("Agosto");
+        cboMes.addItem("Septiembre");
+        cboMes.addItem("Octubre");
+        cboMes.addItem("Noviembre");
+        cboMes.addItem("Diciembre");
+        
+        
+        cboAño.addItem("2018");
+    }
+    
+    private void cargarCantidad(int cantidad){
+        String[] titulos = {"Cantidad"};
+        Object[] fila = new Object[titulos.length];
+
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(titulos);
+        
+        fila[0] = cantidad;
+        
+        model.addRow(fila);
+        tablaEstadisticas2.setModel(model);
+    }
+    
+    private void cargarTop(List<TopVendedores> lista){
+        String[] titulos = {"Nombre", "Run", "Cantidad Viviendas Vendidas/Arrendadas"};
+        Object[] fila = new Object[titulos.length];
+
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(titulos);
+
+        for (TopVendedores v : lista) {
+            fila[0] = v.getNombre();
+            fila[1] = v.getRut();
+            fila[2] = v.getCantidadVentas();
+
+            model.addRow(fila);
+        }
+
+        tablaEstadisticas2.setModel(model);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton RbDppto;
+    private javax.swing.JButton btnCantidades;
+    private javax.swing.JButton btnTop;
     private javax.swing.JButton btnVolver;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox<String> cboAño;
+    private javax.swing.JComboBox<String> cboMes;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JRadioButton rbCasas;
     private javax.swing.JRadioButton rbUsadas;
     private javax.swing.JRadioButton rbVArrendadas;
     private javax.swing.JRadioButton rbVVendidas;
     private javax.swing.JTable tablaEstadisticas2;
-    private javax.swing.JTextField txtTop;
+    private javax.swing.JTextField txtLimite;
     // End of variables declaration//GEN-END:variables
 }
