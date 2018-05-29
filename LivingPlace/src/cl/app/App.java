@@ -24,6 +24,7 @@ public class App extends javax.swing.JFrame {
     private Vendedorr v;
 
     public App() {
+        
         initComponents();
         try {
             d = new Data();
